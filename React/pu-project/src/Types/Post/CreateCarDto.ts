@@ -1,0 +1,22 @@
+export type CreateCarDto = {
+  model: string;
+  imageUrl: string;
+  isAutomatic: boolean;
+  power: number;
+  doors: number;
+  isLeftSteering: boolean;
+  year: string;
+  price: number;
+  consumption: number;
+  weight: number;
+  acceleration: number;
+  maxSpeed: number;
+  colorId: number;
+  bodyStyleId: number;
+  carLevelId: number;
+  conditionId: number;
+  fuelTypeId: number;
+  carMakeId: number;
+  extraIds: number[];
+  tunningIds: number[];
+};

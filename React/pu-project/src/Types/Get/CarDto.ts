@@ -1,0 +1,36 @@
+import { BodyStyleDto } from './BodyStyleDto';
+import { CarLevelDto } from './CarLevelDto';
+import { CarMakeDto } from './CarMakeDto';
+import { ColorDto } from './ColorDto';
+import { ConditionDto } from './ConditionDto';
+import { ExtraDto } from './ExtraDto';
+import { FuelTypeDto } from './FuelTypeDto';
+import { TuningDto } from './TuningDto';
+
+export type CarDto = {
+  id: number;
+  model: string;
+  imageUrl: string;
+  isAutomatic: boolean;
+  power: number;
+  doors: number;
+  createdOn: string;
+  createdBy: string;
+  isLeftSteering: boolean;
+  year: string;
+  price: number;
+  consumption: number;
+  weight: number;
+  acceleration: number;
+  maxSpeed: number;
+  color: ColorDto;
+  bodyStyle: BodyStyleDto;
+  carLevel: CarLevelDto;
+  condition: ConditionDto;
+  fuelType: FuelTypeDto;
+  carMake: CarMakeDto;
+  extras: ExtraDto[];
+  tunings: TuningDto[];
+  lastModifiedOn: string;
+  lastModifiedBy: string;
+};

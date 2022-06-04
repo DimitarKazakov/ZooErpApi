@@ -1,0 +1,87 @@
+﻿[
+  {
+    "name": "Brand New",
+    "reason": "No one has ever droven it.",
+    "explanation": "Mileage is below 100. Interior, Exterior, Engine are brand new. Tools and accessories are all present."
+  },
+  {
+    "name": "Near New",
+    "reason": "It was used for test drives.",
+    "explanation": "Mileage is well below average for year. Car has no significant flaws and has obviously been pampered by its owner. Interior looks new. Engine compartment looks almost new. Trunk looks new. Spare tire has probably never been mounted. Tools and accessories are all present. Car has been maintained but may be due for service now. Service history is available."
+  },
+  {
+    "name": "Near New",
+    "reason": "It is returned from payment.",
+    "explanation": "Almost not used. Mileage is well below average for year. Car has no significant flaws and has obviously been pampered by its owner. Interior looks new. Engine compartment looks almost new. Trunk looks new. Spare tire has probably never been mounted. Tools and accessories are all present. Car has been maintained but may be due for service now. Service history is available."
+  },
+  {
+    "name": "Used - Extra Clean",
+    "reason": "It is returned from payment. Most of the fees are paid.",
+    "explanation": "Usually has below average mileage for its age. Car has no significant exterior flaws. Car is free of significant scratches or dings. There may be a few small chips at door or hood edges, but none that require bodywork. Overall appearance is near new. Interior shows very little wear. Under hood area shows little or no weathering from winter use. Tools and first aid kit — if supplied — are probably present. Car has been maintained but is probably due for its last major service. Service history is usually available."
+  },
+  {
+    "name": "Used - Clean",
+    "reason": "Used by someone but he has really cared for the car.",
+    "explanation": "Has average mileage for its age. Car has very few exterior flaws. May have a few small defects in paint — small dings or scratches (less than $200 each in repair cost). Shows very little wear in interior. Under hood area is clean but may show weathering from winter use. Trunk is clean and free of damage. Tools and first aid kit — if supplied — are probably present. Car has been maintained but is probably due for its last major service. Service history is usually available."
+  },
+  {
+    "name": "Used - Average",
+    "reason": "Used by someone. The car is in average conditions",
+    "explanation": "Has average mileage for its age. The vehicle probably has small flaws — door dings, chips, scratches — on several body panels. Shows slight wear in interior as befits mileage and age. Usually shows some discoloration and/or wear on floor carpets. Under hood area is dirty but shows no signs of damage. Trunk is dirty and may have some damage to carpet or liner. Tools and first aid kit — if supplied — are often missing. Car has received some maintenance but records are not complete."
+  },
+  {
+    "name": "Used - Rough",
+    "reason": "Car has problems sometimes. Needs some parts to be changed",
+    "explanation": "Mileage is average or high for age of vehicle. Vehicle shows significant wear both inside and outside. May have damage to one or more body panels or interior. Some accessories may be broken. Condition is that of a typical five-year-old car on the road in most American cities. Car has received some maintenance but is generally neglected and records are missing or incomplete."
+  },
+  {
+    "name": "Used",
+    "reason": "Unknown",
+    "explanation": "Unknown"
+  },
+  {
+    "name": "For Parts - Drivable",
+    "reason": "The car can still be drived but it is in terrible condition",
+    "explanation": "The car is somehow drivable. Has a lot of issue and need a lot of parts to be changed. To expensive to be repaired."
+  },
+  {
+    "name": "For Parts - Can't Start",
+    "reason": "The car is probably dead but the exterior/interior can be used for parts.",
+    "explanation": "The car might have been in an accident are cannot be driven anymore. Or it is just dead for some other reason but can be used for parts."
+  },
+  {
+    "name": "For Parts",
+    "reason": "Unknown",
+    "explanation": "Unknown"
+  },
+  {
+    "name": "Salvaged",
+    "reason": "Has Salvaged Title",
+    "explanation": "Previously used for parts then restavrated and now is drivable. All new parts and has no significant problems."
+  },
+  {
+    "name": "Water Damage",
+    "reason": "Has been in an accident with water.",
+    "explanation": "Probably there is water in the engine or interior and the car need a lot of cleaning or repairing. May have need of new parts and can be coroded because of the water."
+  },
+  {
+    "name": "Paint Damage",
+    "reason": "The car has scraches and needs repainting of some parts.",
+    "explanation": "The car may have been in an accident and need some parts or all of the body to be repainted. Other than that its conditions is average."
+  },
+  {
+    "name": "Body Damage",
+    "reason": "The car has scraches, body damage and maybe missing exterior parts.",
+    "explanation": "The car may have been in an accident and one or more exterior parts are missing or needs fixing."
+  },
+  {
+    "name": "Unknown",
+    "reason": "Unknown",
+    "explanation": "Unknown"
+  },
+  {
+    "name": "For Free",
+    "reason": "Nothing works or can be used for parts",
+    "explanation": "Usually this means that the car is in absolutely terrible conditions. Cannot be fixed and very little parts can be used from her."
+  }
+]

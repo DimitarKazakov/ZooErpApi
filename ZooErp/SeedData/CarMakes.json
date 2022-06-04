@@ -1,0 +1,273 @@
+﻿[
+  {
+    "name": "BMW",
+    "fullName": "Bayerische Motoren Werke AG",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/BMW_logo_%28gray%29.svg/1200px-BMW_logo_%28gray%29.svg.png",
+    "description": "Bayerische Motoren Werke AG, commonly referred to as BMW, is a German multinational corporate manufacturer of luxury vehicles and motorcycles headquartered in Munich, Bavaria, Germany.",
+    "foundedIn": "07/03/1916",
+    "foundedBy": "Camillo Castiglioni, Franz Josef Popp, Karl Rapp",
+    "headquarters": "Munich, Bavaria, Germany"
+  },
+  {
+    "name": "Mercedes",
+    "fullName": "Mercedes-Benz",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/800px-Mercedes-Logo.svg.png",
+    "description": "Mercedes-Benz, commonly referred to as just Mercedes, is a German luxury automotive marque. Both Mercedes-Benz and Mercedes-Benz AG are headquartered in Stuttgart, Baden-Württemberg, Germany. Mercedes-Benz produces consumer luxury vehicles and commercial vehicles",
+    "foundedIn": "01/01/1926",
+    "foundedBy": "Karl Benz",
+    "headquarters": "Stuttgart, Germany"
+  },
+  {
+    "name": "Toyota",
+    "fullName": "Toyota Motor Corporation",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Toyota_EU.svg/2560px-Toyota_EU.svg.png",
+    "description": "Toyota Motor Corporation is a Japanese multinational automotive manufacturer headquartered in Toyota City, Aichi, Japan. It was founded by Kiichiro Toyoda and incorporated on August 28, 1937. Toyota is one of the largest automobile manufacturers in the world, producing about 10 million vehicles per year",
+    "foundedIn": "28/08/1937",
+    "foundedBy": "Kiichiro Toyoda",
+    "headquarters": "Toyota, Aichi, Japan"
+  },
+  {
+    "name": "Ford",
+    "fullName": "Ford Motor Company",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Ford_Motor_Company_Logo.svg/2560px-Ford_Motor_Company_Logo.svg.png",
+    "description": "Ford Motor Company is an American multinational automobile manufacturer headquartered in Dearborn, Michigan, United States. It was founded by Henry Ford and incorporated on June 16, 1903. The company sells automobiles and commercial vehicles under the Ford brand, and luxury cars under its Lincoln luxury brand.",
+    "foundedIn": "16/06/1903",
+    "foundedBy": "Henry Ford",
+    "headquarters": "Dearborn, Michigan, United States"
+  },
+  {
+    "name": "Volvo",
+    "fullName": "Volvo Cars",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Volvo_Trucks_%26_Bus_logo.jpg/800px-Volvo_Trucks_%26_Bus_logo.jpg",
+    "description": "Volvo Cars is a Swedish multinational manufacturer of luxury vehicles headquartered in Torslanda, Gothenburg. The company manufactures SUVs, station wagons, and sedans. The company's main marketing arguments are safety and its Swedish heritage and design",
+    "foundedIn": "14/04/1927",
+    "foundedBy": "Assar Gabrielsson, Gustaf Larson, SKF",
+    "headquarters": "Gothenburg, Sweden"
+  },
+  {
+    "name": "Volkswagen",
+    "fullName": "Volkswagen Automobile Group",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Volkswagen_Logo_till_1995.svg/1200px-Volkswagen_Logo_till_1995.svg.png",
+    "description": "Volkswagen AG, known internationally as the Volkswagen Group, is a German multinational automotive manufacturer headquartered in Wolfsburg, Lower Saxony, Germany",
+    "foundedIn": "28/05/1937",
+    "foundedBy": "German Labour Front",
+    "headquarters": "Wolfsburg, Germany"
+  },
+  {
+    "name": "Audi",
+    "fullName": "Audi Automobile Group",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a3/Audi_Logo.svg/220px-Audi_Logo.svg.png",
+    "description": "Audi AG is a German automotive manufacturer of luxury vehicles headquartered in Ingolstadt, Bavaria, Germany. As a subsidiary of its parent company, the Volkswagen Group, Audi produces vehicles in nine production facilities worldwide",
+    "foundedIn": "16/06/1909",
+    "foundedBy": "August Horch",
+    "headquarters": "Ingolstadt, Germany"
+  },
+  {
+    "name": "Honda",
+    "fullName": "Honda Motor Company",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Honda.svg/1280px-Honda.svg.png",
+    "description": "Honda Motor Company, Ltd. is a Japanese public multinational conglomerate manufacturer of automobiles, motorcycles, and power equipment, headquartered in Minato, Tokyo, Japan",
+    "foundedIn": "24/09/1948",
+    "foundedBy": "Soichiro Honda, Takeo Fujisawa",
+    "headquarters": "Minato City, Tokyo, Japan"
+  },
+  {
+    "name": "Mitsubishi",
+    "fullName": "Mitsubishi Motors Corporation",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Mitsubishi-logo.png",
+    "description": "Mitsubishi Motors Corporation is a Japanese multinational automotive manufacturer headquartered in Minato, Tokyo, Japan. In 2011, Mitsubishi Motors was the sixth-largest Japanese automaker and the 19th-largest worldwide by production",
+    "foundedIn": "01/01/1970",
+    "foundedBy": "Mitsubishi Heavy Industries, Ltd.",
+    "headquarters": "Minato City, Tokyo, Japan"
+  },
+  {
+    "name": "Hyundai",
+    "fullName": "Hyundai Motor Company",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Hyundai_logo.jpg/800px-Hyundai_logo.jpg",
+    "description": "Hyundai Motor Company, often abbreviated to Hyundai Motors and commonly known as Hyundai, is a South Korean multinational automotive manufacturer headquartered in Seoul, South Korea. Hyundai Motor Company was founded in 1967.",
+    "foundedIn": "29/12/1967",
+    "foundedBy": "Chung Ju-yung",
+    "headquarters": "Seoul, South Korea"
+  },
+  {
+    "name": "Opel",
+    "fullName": "Opel Automobile GmbH",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/1/15/Opel_logo_2020.svg/1200px-Opel_logo_2020.svg.png",
+    "description": "Opel Automobile GmbH, usually shortened to Opel, is a German automobile manufacturer which has been a subsidiary of Stellantis since 16 January 2021. It was owned by the American automaker General Motors from 1929 until 2017 and the PSA Group, a predecessor of Stellantis, from 2017 until 2021.",
+    "foundedIn": "21/01/1862",
+    "foundedBy": "Adam Opel",
+    "headquarters": ""
+  },
+  {
+    "name": "Subaru",
+    "fullName": "Subaru",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/9f/Subaru_Corporation_logo.png",
+    "description": "Subaru is the automobile manufacturing division of Japanese transportation conglomerate Subaru Corporation, the twenty-first largest automaker by production worldwide in 2017. Subaru cars are known for their use of a boxer engine layout in most vehicles above 1500 cc.",
+    "foundedIn": "15/07/1953",
+    "foundedBy": "Kenji Kita",
+    "headquarters": "Shibuya City, Tokyo, Japan"
+  },
+  {
+    "name": "Chevrolet",
+    "fullName": "Chevrolet",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/pt/3/34/Chevrolet_logo.png",
+    "description": "Chevrolet, colloquially referred to as Chevy and formally the Chevrolet Division of General Motors Company, is an American automobile division of the American manufacturer General Motors",
+    "foundedIn": "03/11/1911",
+    "foundedBy": "Louis Chevrolet, William C. Durant, Samuel McLaughlin, Arthur Chevrolet, Edwin R. Campbell, William Little",
+    "headquarters": "Detroit, Michigan, United States"
+  },
+  {
+    "name": "Peugeot",
+    "fullName": "Peugeot",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/fr/b/b9/Peugeot_logo2009.png",
+    "description": "Peugeot is a French brand of automobiles owned by Stellantis. The family business that preceded the current Peugeot companies was founded in 1810, with a steel foundry that soon started making hand tools and kitchen equipment, and then bicycles. On 20 November 1858, Émile Peugeot applied for the lion trademark",
+    "foundedIn": "02/04/1896",
+    "foundedBy": "Armand Peugeot",
+    "headquarters": "London, United Kingdom"
+  },
+  {
+    "name": "Renault",
+    "fullName": "Groupe Renault",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Renault_2009_logo.svg/2048px-Renault_2009_logo.svg.png",
+    "description": "Groupe Renault is a French multinational automobile manufacturer established in 1899. The company produces a range of cars and vans, and in the past has manufactured trucks, tractors, tanks, buses/coaches, aircraft and aircraft engines and autorail vehicles",
+    "foundedIn": "24/12/1898",
+    "foundedBy": "Louis Renault, Marcel Renault, Fernand Renault",
+    "headquarters": "Boulogne-Billancourt, France"
+  },
+  {
+    "name": "Mazda",
+    "fullName": "Mazda Motor Corporation",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/1/18/Mazda_logo_with_emblem.svg/150px-Mazda_logo_with_emblem.svg.png",
+    "description": "Mazda Motor Corporation is a Japanese multinational automaker based in Fuchū, Hiroshima, Japan. In 2015, Mazda produced 1.5 million vehicles for global sales, the majority of which were produced in the company's Japanese plants, with the remainder coming from a variety of other plants worldwide.",
+    "foundedIn": "30/01/1920",
+    "foundedBy": "Jujiro Matsuda",
+    "headquarters": "Fuchu, Hiroshima, Japan"
+  },
+  {
+    "name": "Citroën",
+    "fullName": "Citroën",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Citroen-logo-2009.png/1024px-Citroen-logo-2009.png",
+    "description": "Citroën is a French brand of automobiles owned by Stellantis. In 1934, the firm established its reputation for innovative technology with the Traction Avant.",
+    "foundedIn": "01/03/1919",
+    "foundedBy": "André Citroën",
+    "headquarters": "Poissy, France"
+  },
+  {
+    "name": "Nissan",
+    "fullName": "Nissan Motor Co., Ltd",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Nissan-logo.svg/1189px-Nissan-logo.svg.png",
+    "description": "Nissan Motor Co., Ltd. is a Japanese multinational automobile manufacturer headquartered in Nishi-ku, Yokohama, Japan. The company sells its vehicles under the Nissan, Infiniti, and Datsun brands, with in-house performance tuning products labelled Nismo.",
+    "foundedIn": "26/12/1933",
+    "foundedBy": "Masujiro Hashimoto, William Gorham, Yoshisuke Aikawa, Rokuro Aoyama",
+    "headquarters": "Yokohama, Kanagawa, Japan"
+  },
+  {
+    "name": "Fiat",
+    "fullName": "Fiat Automobiles S.p.A",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Fiat_Automobiles_logo.svg/1024px-Fiat_Automobiles_logo.svg.png",
+    "description": "Fiat Automobiles S.p.A. is an Italian automobile manufacturer, formerly part of Fiat Chrysler Automobiles, and since 2021 a subsidiary of Stellantis through Italian factory FCA Italy",
+    "foundedIn": "11/07/1899",
+    "foundedBy": "Giovanni Agnelli",
+    "headquarters": "Turin, Italy"
+  },
+  {
+    "name": "Škoda",
+    "fullName": "Škoda Auto a.s.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Skoda_-1200x1200.jpg/640px-Skoda_-1200x1200.jpg",
+    "description": "Škoda Auto a.s., often shortened to Škoda, is a Czech automobile manufacturer established in 1925 as the successor to Laurin & Klement and headquartered in Mladá Boleslav, Czech Republic. Škoda Works became state owned in 1948.",
+    "foundedIn": "01/01/1925",
+    "foundedBy": "Václav Laurin, Václav Klement",
+    "headquarters": "Mlada Boleslav, Czechia"
+  },
+  {
+    "name": "Kia",
+    "fullName": "Kia Corporation",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/KIA_logo2.svg/1280px-KIA_logo2.svg.png",
+    "description": "Kia Corporation, commonly known as Kia, is a South Korean multinational automobile manufacturer headquartered in Seoul, South Korea. It is South Korea's second largest automobile manufacturer after Hyundai Motor Company, with sales of over 2.8 million vehicles in 2019",
+    "foundedIn": "11/12/1944",
+    "foundedBy": "Kim Cheol-ho",
+    "headquarters": "Seoul, South Korea"
+  },
+  {
+    "name": "Alfa Romeo",
+    "fullName": "Alfa Romeo Automobiles S.p.A",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/de/thumb/2/24/Alfa_Romeo.svg/2000px-Alfa_Romeo.svg.png?20110924115252",
+    "description": "Alfa Romeo Automobiles S.p.A. is an Italian Luxury car manufacturer and a subsidiary of Stellantis. The company was founded on 24 June 1910, in Milan, Italy. \"Alfa\" is an acronym of its founding name, Anonima Lombarda Fabbrica Automobili.",
+    "foundedIn": "24/06/1910",
+    "foundedBy": "Nicola Romeo, Alexandre Darracq, Ugo Stella",
+    "headquarters": "Turin, Italy"
+  },
+  {
+    "name": "Land Rover",
+    "fullName": "Land Rover",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4a/LandRover.svg/1200px-LandRover.svg.png",
+    "description": "Land Rover is a British brand of predominantly four-wheel drive, off-road capable vehicles, owned by multinational car manufacturer Jaguar Land Rover, since 2008 a subsidiary of India's Tata Motors. JLR currently builds Land Rovers in Brazil, China, India, Slovakia, and the United Kingdom",
+    "foundedIn": "01/01/1978",
+    "foundedBy": "British Leyland",
+    "headquarters": "Whitley, Coventry, United Kingdom"
+  },
+  {
+    "name": "Jaguar",
+    "fullName": "Jaguar",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/it/thumb/0/0b/Logo_della_Jaguar.svg/1280px-Logo_della_Jaguar.svg.png",
+    "description": "Jaguar is the luxury vehicle brand of Jaguar Land Rover, a British multinational car manufacturer with its headquarters in Whitley, Coventry, England.",
+    "foundedIn": "04/09/1922",
+    "foundedBy": "William Lyons, William Walmsley",
+    "headquarters": "Coventry, United Kingdom"
+  },
+  {
+    "name": "Porsche",
+    "fullName": "Dr.-Ing. h.c. F. Porsche AG",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/de/thumb/7/70/Porsche_Logo.svg/1200px-Porsche_Logo.svg.png",
+    "description": "Dr.-Ing. h.c. F. Porsche AG, usually shortened to Porsche, is a German automobile manufacturer specializing in high-performance sports cars, SUVs and sedans, headquartered in Stuttgart, Baden-Württemberg, Germany",
+    "foundedIn": "25/04/1931",
+    "foundedBy": "Ferdinand Porsche",
+    "headquarters": "Stuttgart, Germany"
+  },
+  {
+    "name": "Lexus",
+    "fullName": "Lexus",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d1/Lexus_division_emblem.svg/1200px-Lexus_division_emblem.svg.png",
+    "description": "Lexus is the luxury vehicle division of the Japanese automaker Toyota. The Lexus brand is marketed in more than 90 countries and territories worldwide and is Japan's largest-selling make of premium cars. It has ranked among the 10 largest Japanese global brands in market value. Lexus is headquartered in Nagoya, Japan",
+    "foundedIn": "01/01/1989",
+    "foundedBy": "Eiji Toyoda",
+    "headquarters": "Nagoya, Aichi, Japan"
+  },
+  {
+    "name": "Lamborghini",
+    "fullName": "Automobili Lamborghini S.p.A",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Lamborghini_Logo.svg/1200px-Lamborghini_Logo.svg.png",
+    "description": "Automobili Lamborghini S.p.A. is an Italian brand and manufacturer of luxury sports cars and SUVs based in Sant'Agata Bolognese. The company is owned by the Volkswagen Group through its subsidiary Audi.",
+    "foundedIn": "01/05/1963",
+    "foundedBy": "Ferruccio Lamborghini",
+    "headquarters": "Sant'Agata Bolognese, Italy"
+  },
+  {
+    "name": "Tesla",
+    "fullName": "Tesla, Inc",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png",
+    "description": "Tesla, Inc. is an American electric vehicle and clean energy company based in Austin, Texas. Tesla designs and manufactures electric cars, battery energy storage from home to grid-scale, solar panels and solar roof tiles, and related products and services.",
+    "foundedIn": "01/07/2003",
+    "foundedBy": "Elon Musk, Martin Eberhard, JB Straubel, Marc Tarpenning, Ian Wright",
+    "headquarters": "Austin, Texas, United States"
+  },
+  {
+    "name": "Infiniti",
+    "fullName": "Infiniti Motor Company",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Infiniti_logo.svg/2560px-Infiniti_logo.svg.png",
+    "description": "Infiniti is the luxury vehicle division of Japanese automaker Nissan. Infiniti officially started selling vehicles on November 8, 1989, in North America. The marketing network for Infiniti-branded vehicles included dealers in over 50 countries in the 2010s. As of 2020, there were 25 markets served by new car dealers",
+    "foundedIn": "08/11/1989",
+    "foundedBy": "Bill Bruce",
+    "headquarters": "Yokohama, Kanagawa, Japan"
+  },
+  {
+    "name": "Dodge",
+    "fullName": "Dodge",
+    "imageUrl": "https://www.focus2move.com/wp-content/uploads/2017/04/dodge-logo.jpg",
+    "description": "Dodge is an American brand of automobiles and a division of Stellantis, based in Auburn Hills, Michigan. Dodge vehicles have historically included performance cars, and for much of its existence Dodge was Chrysler's mid-priced brand above Plymouth",
+    "foundedIn": "01/01/1900",
+    "foundedBy": "John Francis Dodge, Horace Elgin Dodge",
+    "headquarters": "Auburn Hills, Michigan, United States"
+  }
+]
+

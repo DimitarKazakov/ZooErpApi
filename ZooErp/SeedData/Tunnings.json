@@ -1,0 +1,37 @@
+﻿[
+  {
+    "name": "Sports suspension",
+    "function": "ensures better roadholding",
+    "brand": "Nengun",
+    "description": "Tuners use the term “sports suspension” to describe suspensions whose combination of springs and shock absorbers is tuned to be firmer than a series suspension. Standard sports suspensions are aimed at drivers who want a sporty look and set-up – without sacrificing much in the way of comfort.",
+    "imageUrl": "https://image.nengun.com/catalogue/1024x768/nengun-1736-02-suzukisport-sport_comfort_height_adjustable_sport_suspension.jpg"
+  },
+  {
+    "name": "Turbo",
+    "function": "increases an internal combustion engine's power output",
+    "brand": "Carrett",
+    "description": "A turbocharger (technically a turbosupercharger), colloquially known as turbo, is a turbine-driven, forced induction device that increases an internal combustion engine's power output by forcing extra compressed air into the combustion chamber.[1][2] This improvement over a naturally aspirated engine's power output is because the compressor can force more air—and proportionately more fuel—into the combustion chamber than atmospheric pressure (and for that matter, ram air intakes) alone.",
+    "imageUrl": "https://race-shop.bg/125425-large_default/turbo-garrett-gtx3582r-gen-ii-851154-5004s-super-core.jpg"
+  },
+  {
+    "name": "Coilovers",
+    "function": "recommended exclusively for sporty drivers who want to adapt their suspension completely to their individual wishes.",
+    "brand": "HSD",
+    "description": "The most technically complex but also the best way of lowering a vehicle is to use coilover suspension, also known as screw-in suspension. These include, for example, the BILSTEIN B16 or the BILSTEIN EVO T1 coilover suspension. The shock absorbers or spring plates have a thread that tuners can use to adjust the lowering precisely. But this is only the simplest version. Other settings are also possible, for example the hardness of the damping, which the driver triggers at the touch of a button.",
+    "imageUrl": "https://races-shop.com/447609-large_default/coilovers-hsd-monopro-for-toyota-altezza-sxe10-99.jpg"
+  },
+  {
+    "name": "Roll Cage",
+    "function": "Protection in case of roll",
+    "brand": "Custom",
+    "description": "A roll cage is a specially engineered and constructed frame built in (or sometimes around, in which case it is known as an exo cage) the passenger compartment of a vehicle to protect its occupants from being injured or killed in an accident, particularly in the event of a rollover.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f9/BMW_1_-_Scheffler_Safety_Cage.JPG"
+  },
+  {
+    "name": "SPL Audio",
+    "function": "better music and bass in the car.",
+    "brand": "Pride",
+    "description": "Pride Amplifiers have Russian development together with the Korean manufacturer. We produce the best and time-tested models of CarAudio mplifiers.",
+    "imageUrl": "https://i.pinimg.com/736x/28/d4/df/28d4df1db09f5b4f0b9ae4e933526ebc--bass-audio.jpg"
+  }
+]

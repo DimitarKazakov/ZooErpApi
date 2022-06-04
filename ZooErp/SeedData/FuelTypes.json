@@ -1,0 +1,79 @@
+﻿[
+  {
+    "fuel": "Diesel",
+    "currentPrice": 2.45
+  },
+  {
+    "fuel": "Avgas",
+    "currentPrice": 2.65
+  },
+  {
+    "fuel": "Avtur",
+    "currentPrice": 2.77
+  },
+  {
+    "fuel": "Kerosene",
+    "currentPrice": 2.20
+  },
+  {
+    "fuel": "SolarOil",
+    "currentPrice": 1.40
+  },
+  {
+    "fuel": "FuelOil",
+    "currentPrice": 1.20
+  },
+  {
+    "fuel": "Biodiesel",
+    "currentPrice": 2.60
+  },
+  {
+    "fuel": "Gasoline",
+    "currentPrice": 1.30
+  },
+  {
+    "fuel": "Electric",
+    "currentPrice": 0.70
+  },
+  {
+    "fuel": "Petrol",
+    "currentPrice": 2.35
+  },
+  {
+    "fuel": "Biofuel",
+    "currentPrice": 1.50
+  },
+  {
+    "fuel": "Natural Gas",
+    "currentPrice": 1.25
+  },
+  {
+    "fuel": "Ethanol",
+    "currentPrice": 0.90
+  },
+  {
+    "fuel": "Methanol",
+    "currentPrice": 1.10
+  },
+  {
+    "fuel": "Mild Hybrid Electric",
+    "currentPrice": 1.60
+  },
+  {
+    "fuel": "Hybrid Electric",
+    "currentPrice": 1.40
+  },
+  {
+    "fuel": "Plug-in Hybrid",
+    "currentPrice": 1.15
+  },
+  {
+    "fuel": "Hydrogen",
+    "currentPrice": 0.50
+  },
+  {
+    "fuel": "Liquid Petroleum Gas",
+    "currentPrice": 1.45
+  }
+]
+
