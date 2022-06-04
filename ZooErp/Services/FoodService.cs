@@ -35,8 +35,10 @@ namespace ZooErp.Services
 					Name = x.Name,
 					Price = x.Price,
 					Type = x.Type.GetEnumDescription(),
-					Quantity = x.Quantity,
+					Quantity = x.AnimalFoods.Sum(x => x.Quantity),
 					UsageType = x.UsageType.GetEnumDescription(),
+					NumberOfAnimals = x.AnimalFoods.Count,
+					Animals = x.AnimalFoods.Select(x => x.Animal.Name),
 					CreatedOn = x.CreatedOn.ToString("d/MM/yyyy"),
 					LastModifiedOn = x.LastModifiedOn.ToString("d/MM/yyyy")
 				}).ToListAsync();
@@ -52,6 +54,25 @@ namespace ZooErp.Services
 			}
 
 			return foods;
+		}
+
+		public async Task<bool> DeleteAsync(int id)
+		{
+			var animalsFoods = await this.context.AnimalFoods.Where(x => x.FoodId == id).ToListAsync();
+			if (animalsFoods.Any())
+			{
+				this.context.AnimalFoods.RemoveRange(animalsFoods);
+			}
+
+			var food = await this.context.Foods.Where(x => x.Id == id).FirstOrDefaultAsync();
+			if (food != null)
+			{
+				this.context.Foods.Remove(food);
+			}
+
+			await this.context.SaveChangesAsync();
+
+			return true;
 		}
 	}
 }

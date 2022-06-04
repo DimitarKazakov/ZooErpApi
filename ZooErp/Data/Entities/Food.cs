@@ -18,8 +18,6 @@ namespace ZooErp.Data.Entities
 
         public string ImageUrl { get; set; }
 
-        public int Quantity { get; set; }
-
         public string Name { get; set; }
 
         public UsageType UsageType { get; set; }

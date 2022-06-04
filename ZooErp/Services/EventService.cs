@@ -17,7 +17,7 @@ namespace ZooErp.Services
             this.authService = authService;
         }
         
-        public async Task<IEnumerable<EventDto>> GetEvents(FilterDto filter)
+        public async Task<IEnumerable<EventDto>> GetAsync(FilterDto filter)
         {
 			var events = await this.context
 				.Events
@@ -26,6 +26,7 @@ namespace ZooErp.Services
 				.Select(x => new EventDto
 				{
 					Cage = x.Cage.Name,
+					CageId = x.CageId,
 					LastModifiedBy = x.LastModifiedBy,
 					Type = x.Type.GetEnumDescription(),
 					CreatedBy = x.CreatedBy,
@@ -46,6 +47,19 @@ namespace ZooErp.Services
 			}
 
 			return events;
+		}
+
+		public async Task<bool> DeleteAsync(int id)
+		{
+			var cageEvent = await this.context.Events.Where(x => x.Id == id).FirstOrDefaultAsync();
+			if (cageEvent != null)
+			{
+				this.context.Events.Remove(cageEvent);
+			}
+
+			await this.context.SaveChangesAsync();
+
+			return true;
 		}
 	}
 }

@@ -2,6 +2,7 @@
 using Microsoft.OpenApi.Models;
 using PuWeb.Services;
 using ZooErp.Data;
+using ZooErp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var localhostCors = "AllowLocalhostOrigin";
@@ -90,6 +91,11 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddDbContext<ApplicationDbContext>();
 builder.Services.AddTransient<AuthenticationService>();
+builder.Services.AddTransient<EventService>();
+builder.Services.AddTransient<CageService>();
+builder.Services.AddTransient<FoodService>();
+builder.Services.AddTransient<AnimalService>();
+
 builder.Services.AddTransient<SeedService>();
 builder.Services.AddTransient<ColorService>();
 builder.Services.AddTransient<BodyStylesService>();
@@ -100,6 +106,7 @@ builder.Services.AddTransient<FuelTypesService>();
 builder.Services.AddTransient<ExtrasService>();
 builder.Services.AddTransient<TuningService>();
 builder.Services.AddTransient<CarService>();
+
 builder.Services.AddSingleton<IConfiguration>(configuration);
 
 var app = builder.Build();

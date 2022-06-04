@@ -18,6 +18,10 @@ namespace ZooErp.Models
         public string UsageType { get; set; }
 
         public string Type { get; set; }
+
+        public int NumberOfAnimals { get; set; }
+
+        public IEnumerable<string> Animals { get; set; }
     }
 }
 
