@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using ZooErp.Data;
+using ZooErp.Data.Entities;
 using ZooErp.Models;
 using ZooErp.Models.Enums;
 
@@ -57,6 +58,57 @@ namespace ZooErp.Services
 				this.context.Events.Remove(cageEvent);
 			}
 
+			await this.context.SaveChangesAsync();
+
+			return true;
+		}
+
+		public async Task<bool> CreateAsync(CreateEventDto data, string token)
+		{
+			var userInfo = await this.authService.GetUserInfoAsync(token);
+			var eventEntity = new Event
+			{
+				CageId = data.CageId,
+				CreatedBy = userInfo.FullName,
+				CreatedOn = DateTime.Now,
+				LastModifiedBy = userInfo.FullName,
+				LastModifiedOn = DateTime.Now,
+				Description = data.Description,
+				Type = (EventType)data.Type
+			};
+
+			await this.context.Events.AddAsync(eventEntity);
+
+			await this.context.SaveChangesAsync();
+
+			return true;
+		}
+
+		public async Task<IEnumerable<SelectDto>> GetOptions()
+		{
+			return await this.context.Events.Select(x => new SelectDto
+			{
+				Id = x.Id,
+				Name = x.Type.GetEnumDescription()
+			}).ToListAsync();
+		}
+
+		public async Task<bool> UpdateAsync(CreateEventDto data, int id, string token)
+		{
+			var entity = await this.context.Events.FirstOrDefaultAsync(x => x.Id == id);
+			if (entity is null)
+			{
+				throw new Exception("Event with that id was not found");
+			}
+
+			var userInfo = await this.authService.GetUserInfoAsync(token);
+			entity.LastModifiedBy = userInfo.FullName;
+			entity.LastModifiedOn = DateTime.Now;
+			entity.CageId = data.CageId;
+			entity.Description = data.Description;
+			entity.Type = (EventType)data.Type;
+
+			this.context.Events.Update(entity);
 			await this.context.SaveChangesAsync();
 
 			return true;

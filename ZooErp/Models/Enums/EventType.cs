@@ -27,7 +27,19 @@ namespace ZooErp.Models.Enums
 		AnimalSold = 7,
 
 		[Description("Waiting For Baby")]
-		WaitingForBaby = 8
+		WaitingForBaby = 8,
+
+		[Description("Cage is Dirty")]
+		CageDirty = 9,
+
+		[Description("Cage was cleaned")]
+		CageCleaned = 10,
+
+		[Description("Accident")]
+		Accident = 11,
+
+		[Description("Update")]
+		Update = 12,
 	}
 }
 

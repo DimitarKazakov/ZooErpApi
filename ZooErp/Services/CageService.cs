@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using ZooErp.Data;
+using ZooErp.Data.Entities;
 using ZooErp.Models;
 using ZooErp.Models.Enums;
 
@@ -112,6 +113,92 @@ namespace ZooErp.Services
 			{
 				this.context.Cages.Remove(cage);
 			}
+
+			await this.context.SaveChangesAsync();
+
+			return true;
+		}
+
+		public async Task<bool> CreateAsync(CreateCageDto data, string token)
+		{
+			var userInfo = await this.authService.GetUserInfoAsync(token);
+			var cage = new Cage
+			{
+				Name = data.Name,
+				Description = data.Description,
+				CreatedBy = userInfo.FullName,
+				CreatedOn = DateTime.Now,
+				LastModifiedBy = userInfo.FullName,
+				LastModifiedOn = DateTime.Now,
+				ImageUrl = data.ImageUrl,
+				Type = (CageType)data.Type,
+				Area = data.Area,
+				Capacity = data.Capacity,
+				Location = data.Location,
+				Rating = data.Rating
+			};
+
+			await this.context.Cages.AddAsync(cage);
+
+			await this.context.Events.AddAsync(new Event
+			{
+				Cage = cage,
+				CreatedBy = userInfo.FullName,
+				CreatedOn = DateTime.Now,
+				LastModifiedBy = userInfo.FullName,
+				LastModifiedOn = DateTime.Now,
+				Description = $"Cage {data.Name} was created",
+				Type = EventType.CageCreated
+			});
+
+			await this.context.SaveChangesAsync();
+
+			return true;
+		}
+
+		public async Task<IEnumerable<SelectDto>> GetOptions()
+		{
+			return await this.context.Cages.Select(x => new SelectDto
+			{
+				Id = x.Id,
+				Name = x.Name
+			}).ToListAsync();
+		}
+
+		public async Task<bool> UpdateAsync(CreateCageDto data, int id, string token)
+		{
+			var entity = await this.context.Cages.FirstOrDefaultAsync(x => x.Id == id);
+			if (entity is null)
+			{
+				throw new Exception("Cage with that id was not found");
+			}
+
+
+			var userInfo = await this.authService.GetUserInfoAsync(token);
+
+			entity.Description = data.Description;
+			entity.ImageUrl = data.ImageUrl;
+			entity.Type = (CageType)data.Type;
+			entity.Area = data.Area;
+			entity.Capacity = data.Capacity;
+			entity.Location = data.Location;
+			entity.Rating = data.Rating;
+			entity.LastModifiedBy = userInfo.FullName;
+			entity.LastModifiedOn = DateTime.Now;
+			entity.Name = data.Name;
+
+			this.context.Cages.Update(entity);
+
+			await this.context.Events.AddAsync(new Event
+			{
+				Cage = entity,
+				CreatedBy = userInfo.FullName,
+				CreatedOn = DateTime.Now,
+				LastModifiedBy = userInfo.FullName,
+				LastModifiedOn = DateTime.Now,
+				Description = $"Cage {data.Name} was updated",
+				Type = EventType.Update
+			});
 
 			await this.context.SaveChangesAsync();
 

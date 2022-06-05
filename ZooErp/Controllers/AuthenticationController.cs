@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PuWeb.Models;
-using PuWeb.Services;
+using ZooErp.Models;
+using ZooErp.Services;
 
-namespace PuWeb.Controllers
+namespace ZooErp.Controllers
 {
     public class AuthenticationController : ApiControllerBase
     {

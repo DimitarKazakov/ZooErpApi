@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using ZooErp.Data;
+using ZooErp.Data.Entities;
 using ZooErp.Models;
 using ZooErp.Models.Enums;
 
@@ -68,6 +69,126 @@ namespace ZooErp.Services
 			if (food != null)
 			{
 				this.context.Foods.Remove(food);
+			}
+
+			await this.context.SaveChangesAsync();
+
+			return true;
+		}
+
+		public async Task<bool> CreateAsync(CreateFoodDto data, string token)
+		{
+			var userInfo = await this.authService.GetUserInfoAsync(token);
+			var food = new Food
+			{
+				Name = data.Name,
+				Description = data.Description,
+				CreatedBy = userInfo.FullName,
+				CreatedOn = DateTime.Now,
+				LastModifiedBy = userInfo.FullName,
+				LastModifiedOn = DateTime.Now,
+				ImageUrl = data.ImageUrl,
+				Price = data.Price,
+				Colories = data.Colories,
+				Type = (FoodType)data.Type,
+				UsageType = (UsageType)data.UsageType
+
+			};
+
+			await this.context.Foods.AddAsync(food);
+
+			foreach (var animalId in data.AnimalIds)
+			{
+				var animal = await this.context.Animals.FirstOrDefaultAsync(x => x.Id == animalId);
+				if (animal == null)
+				{
+					continue;
+				}
+
+				await this.context.AnimalFoods.AddAsync(new AnimalFood
+				{
+					Animal = animal,
+					Food = food,
+					CreatedOn = DateTime.Now,
+					CreatedBy = userInfo.FullName,
+					LastModifiedBy = userInfo.FullName,
+					LastModifiedOn = DateTime.Now
+				});
+			}
+
+			await this.context.SaveChangesAsync();
+
+			return true;
+		}
+
+		public async Task<IEnumerable<SelectDto>> GetOptions()
+		{
+			return await this.context.Foods.Select(x => new SelectDto
+			{
+				Id = x.Id,
+				Name = x.Name
+			}).ToListAsync();
+		}
+
+		public async Task<bool> UpdateAsync(CreateFoodDto data, int id, string token)
+		{
+			var entity = await this.context.Foods.Include(x => x.AnimalFoods).FirstOrDefaultAsync(x => x.Id == id);
+			if (entity is null)
+			{
+				throw new Exception("Food with that id was not found");
+			}
+
+			var userInfo = await this.authService.GetUserInfoAsync(token);
+			entity.LastModifiedBy = userInfo.FullName;
+			entity.LastModifiedOn = DateTime.Now;
+			entity.Description = data.Description;
+			entity.Name = data.Name;
+			entity.ImageUrl = data.ImageUrl;
+			entity.Price = data.Price;
+			entity.Colories = data.Colories;
+			entity.Type = (FoodType)data.Type;
+			entity.UsageType = (UsageType)data.UsageType;
+
+			this.context.Foods.Update(entity);
+
+			foreach (var animalId in data.AnimalIds)
+			{
+				if (entity.AnimalFoods.Any(x => x.AnimalId == animalId))
+				{
+					continue;
+				}
+
+				var animal = await this.context.Animals.FirstOrDefaultAsync(x => x.Id == animalId);
+				if (animal == null)
+				{
+					continue;
+				}
+
+				await this.context.AnimalFoods.AddAsync(new AnimalFood
+				{
+					Animal = animal,
+					Food = entity,
+					CreatedOn = DateTime.Now,
+					CreatedBy = userInfo.FullName,
+					LastModifiedOn = DateTime.Now,
+					LastModifiedBy = userInfo.FullName,
+				});
+			}
+
+			foreach (var animalId in entity.AnimalFoods.Select(x => x.AnimalId))
+			{
+				if (data.AnimalIds.Any(x => x == animalId))
+				{
+					continue;
+				}
+
+				var animalFood = await this.context.AnimalFoods.FirstOrDefaultAsync(x => x.AnimalId == animalId && x.FoodId == entity.Id);
+				if (animalFood == null)
+				{
+					continue;
+				}
+
+				this.context.AnimalFoods.Remove(animalFood);
 			}
 
 			await this.context.SaveChangesAsync();

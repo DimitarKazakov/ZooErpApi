@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using Newtonsoft.Json;
-using PuWeb.Models;
+using ZooErp.Models;
 using RestSharp;
 
 namespace ZooErp.Services

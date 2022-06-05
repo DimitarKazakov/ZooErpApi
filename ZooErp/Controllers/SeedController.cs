@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using PuWeb.Data;
 using PuWeb.Services;
 
-namespace PuWeb.Controllers
+namespace ZooErp.Controllers
 {
     public class SeederController : ApiControllerBase
     {

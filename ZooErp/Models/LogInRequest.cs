@@ -1,5 +1,5 @@
 ﻿using System;
-namespace PuWeb.Models
+namespace ZooErp.Models
 {
     public class LogInRequest
     {

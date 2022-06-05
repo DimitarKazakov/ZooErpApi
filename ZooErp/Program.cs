@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
-using PuWeb.Services;
 using ZooErp.Data;
 using ZooErp.Services;
 
@@ -98,7 +97,6 @@ builder.Services.AddTransient<AnimalService>();
 
 builder.Services.AddTransient<SeedService>();
 builder.Services.AddTransient<ColorService>();
-builder.Services.AddTransient<BodyStylesService>();
 builder.Services.AddTransient<CarLevelService>();
 builder.Services.AddTransient<CarMakeService>();
 builder.Services.AddTransient<ConditionsService>();
