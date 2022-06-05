@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Microsoft.EntityFrameworkCore;
 using ZooErp.Data;
 using ZooErp.Data.Entities;
@@ -20,10 +21,23 @@ namespace ZooErp.Services
 
         public async Task<IEnumerable<AnimalDto>> GetAsync(FilterDto filter)
         {
+			DateTime? createdOnFilter = null;
+			DateTime? lastModifiedOnFilter = null;
+			if (filter.CreatedOnDate != null)
+            {
+				createdOnFilter = DateTime.ParseExact(filter.CreatedOnDate, "d/MM/yyyy", CultureInfo.InvariantCulture);
+			}
+
+            if (filter.LastModifiedOnDate != null)
+            {
+				lastModifiedOnFilter = DateTime.ParseExact(filter.LastModifiedOnDate, "d/MM/yyyy", CultureInfo.InvariantCulture);
+			}
+
 			var animals = await this.context
 				.Animals
 				.Where(x => (!filter.Id.HasValue || x.Id == filter.Id)
-							&& (!filter.FilterDate.HasValue || DateTime.Compare(x.CreatedOn, (DateTime)filter.FilterDate) >= 0))
+							&& (!createdOnFilter.HasValue || DateTime.Compare(x.CreatedOn, (DateTime)createdOnFilter) >= 0)
+							&& (!lastModifiedOnFilter.HasValue || DateTime.Compare(x.LastModifiedOn, (DateTime)lastModifiedOnFilter) >= 0))
 				.Select(x => new AnimalDto
 				{
 					Age = x.Age,
@@ -44,12 +58,12 @@ namespace ZooErp.Services
 					LastModifiedOn = x.LastModifiedOn.ToString("d/MM/yyyy"),
 				}).ToListAsync();
 
-			if (filter.Skip != null)
+			if (filter.Skip.HasValue)
 			{
 				animals = animals.Skip((int)filter.Skip).ToList();
 			}
 
-			if (filter.Take != null)
+			if (filter.Take.HasValue)
 			{
 				animals = animals.Take((int)filter.Take).ToList();
 			}

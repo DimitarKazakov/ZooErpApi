@@ -18,23 +18,8 @@ namespace ZooErp.Controllers
 
         [HttpGet("[action]")]
         [Authorize]
-        public async Task<IEnumerable<AnimalDto>> GetAllAsync()
-            => await this.service.GetAsync(new FilterDto());
-
-        [HttpGet("[action]/{id:int}")]
-        [Authorize]
-        public async Task<IEnumerable<AnimalDto>> GetByIdAsync([FromRoute] int id)
-            => await this.service.GetAsync(new FilterDto() { Id = id });
-
-        [HttpGet("[action]")]
-        [Authorize]
-        public async Task<IEnumerable<AnimalDto>> GetWithCountAsync([FromQuery] int skip, [FromQuery] int take)
-            => await this.service.GetAsync(new FilterDto() { Skip = skip, Take = take });
-
-        [HttpGet("[action]")]
-        [Authorize]
-        public async Task<IEnumerable<AnimalDto>> GetByDateAsync([FromQuery] string startDate)
-            => await this.service.GetAsync(new FilterDto() { FilterDate = DateTime.ParseExact(startDate, "d/MM/yyyy", CultureInfo.InvariantCulture) });
+        public async Task<IEnumerable<AnimalDto>> GetAllAsync([FromQuery] FilterDto filter)
+            => await this.service.GetAsync(filter);
 
         [HttpDelete("[action]/{id}")]
         [Authorize(Policy = "Administrator")]

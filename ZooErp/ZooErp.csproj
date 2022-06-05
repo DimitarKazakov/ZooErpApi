@@ -49,9 +49,4 @@
     <Folder Include="SeedData\Models\" />
     <Folder Include="Models\Enums\" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Update="SeedData\FuelTypes.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
 </Project>

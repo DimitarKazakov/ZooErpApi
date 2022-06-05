@@ -4,8 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PuWeb.Data;
-using PuWeb.Services;
+using ZooErp.Services;
 
 namespace ZooErp.Controllers
 {
@@ -20,35 +19,30 @@ namespace ZooErp.Controllers
 
         [HttpPost("[action]")]
         [Authorize(Policy = "Administrator")]
-        public async Task<int> SeedFuelTypesAsync() => await this.seedService.SeedFuelTypesAsync();
+        public async Task<int> SeedAnimalsAsync() => await this.seedService.SeedAnimalsAsync();
 
         [HttpPost("[action]")]
         [Authorize(Policy = "Administrator")]
-        public async Task<int> SeedBodyStylesAsync() => await this.seedService.SeedBodyStylesAsync();
+        public async Task<int> SeedCagesAsync() => await this.seedService.SeedCagesAsync();
 
         [HttpPost("[action]")]
         [Authorize(Policy = "Administrator")]
-        public async Task<int> SeedColorsAsync() => await this.seedService.SeedColorsAsync();
+        public async Task<int> SeedFoodsAsync() => await this.seedService.SeedFoodsAsync();
 
         [HttpPost("[action]")]
         [Authorize(Policy = "Administrator")]
-        public async Task<int> SeedCarLevelsAsync() => await this.seedService.SeedCarLevelsAsync();
+        public async Task<int> SeedEventsAsync() => await this.seedService.SeedEventsAsync();
 
         [HttpPost("[action]")]
         [Authorize(Policy = "Administrator")]
-        public async Task<int> SeedCarMakesAsync() => await this.seedService.SeedCarMakesAsync();
-
-        [HttpPost("[action]")]
-        [Authorize(Policy = "Administrator")]
-        public async Task<int> SeedConditionsAsync() => await this.seedService.SeedConditionsAsync();
-
-        [HttpPost("[action]")]
-        [Authorize(Policy = "Administrator")]
-        public async Task<int> SeedExtrasAsync() => await this.seedService.SeedExtrasAsync();
-
-        [HttpPost("[action]")]
-        [Authorize(Policy = "Administrator")]
-        public async Task<int> SeedTunningsAsync() => await this.seedService.SeedTunningsAsync();
+        public async Task<bool> SeedAllDataAsync()
+        {
+            await this.seedService.SeedCagesAsync();
+            await this.seedService.SeedFoodsAsync();
+            await this.seedService.SeedEventsAsync();
+            await this.seedService.SeedAnimalsAsync();
+            return true;
+        }
     }
 }
 

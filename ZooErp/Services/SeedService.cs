@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Globalization;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using PuWeb.Data;
-using PuWeb.Data.Entities;
-using PuWeb.SeedData.Models;
+using ZooErp.Data;
+using ZooErp.Data.Entities;
+using ZooErp.Models.Enums;
+using ZooErp.SeedData.Models;
 
-namespace PuWeb.Services
+namespace ZooErp.Services
 {
 	public class SeedService
 	{
@@ -16,68 +18,39 @@ namespace PuWeb.Services
 			this.context = context;
 		}
 
-		public async Task<int> SeedFuelTypesAsync()
+		public async Task<int> SeedCagesAsync()
 		{
 			var count = 0;
 			var currentDir = Directory.GetCurrentDirectory();
-			using var reader = new StreamReader($"{currentDir}/SeedData/FuelTypes.json");
+			using var reader = new StreamReader($"{currentDir}/SeedData/Cages.json");
 			string jsonString = reader.ReadToEnd();
 			if (jsonString is null)
 			{
 				return count;
 			}
 
-			var fuelTypes = JsonConvert.DeserializeObject<FuelTypeSeedModel[]>(jsonString);
-			foreach (var fuelType in fuelTypes)
+			var cages = JsonConvert.DeserializeObject<CageSeedModel[]>(jsonString);
+			foreach (var cage in cages)
 			{
-				if (this.context.FuelTypes.Any(x => x.Fuel == fuelType.Fuel))
+				if (this.context.Cages.Any(x => x.Name == cage.Name))
 				{
 					continue;
 				}
 
-				await this.context.FuelTypes.AddAsync(new FuelType
+				await this.context.Cages.AddAsync(new Cage
 				{
-					Fuel = fuelType.Fuel,
-					CurrentPrice = fuelType.CurrentPrice,
-					CreatedOn = DateTime.Now,
-					CreatedBy = "System"
-				});
-
-				count++;
-			}
-
-			await this.context.SaveChangesAsync();
-			return count;
-		}
-
-		public async Task<int> SeedExtrasAsync()
-		{
-			var count = 0;
-			var currentDir = Directory.GetCurrentDirectory();
-			using var reader = new StreamReader($"{currentDir}/SeedData/Extras.json");
-			string jsonString = reader.ReadToEnd();
-			if (jsonString is null)
-			{
-				return count;
-			}
-
-			var extras = JsonConvert.DeserializeObject<ExtraSeedModel[]>(jsonString);
-			foreach (var extra in extras)
-			{
-				if (this.context.Extras.Any(x => x.Name == extra.Name))
-				{
-					continue;
-				}
-
-				await this.context.Extras.AddAsync(new Extra
-				{
-					Name = extra.Name,
-					UsualPrice = extra.UsualPrice,
+					Area = cage.Area,
+					Capacity = cage.Capacity,
+					Description = cage.Description,
+					ImageUrl = cage.ImageUrl,
+					Location = cage.Location,
+					Name = cage.Name,
+					Rating = cage.Rating,
+					Type = cage.Type,
 					CreatedOn = DateTime.Now,
 					CreatedBy = "System",
-					Description = extra.Description,
-					Brand = extra.Brand,
-					ImageUrl = extra.ImageUrl
+					LastModifiedBy = "System",
+					LastModifiedOn = DateTime.Now
 				});
 
 				count++;
@@ -87,34 +60,150 @@ namespace PuWeb.Services
 			return count;
 		}
 
-		public async Task<int> SeedTunningsAsync()
-        {
+		public async Task<int> SeedAnimalsAsync()
+		{
 			var count = 0;
 			var currentDir = Directory.GetCurrentDirectory();
-			using var reader = new StreamReader($"{currentDir}/SeedData/Tunnings.json");
+			using var reader = new StreamReader($"{currentDir}/SeedData/Animals.json");
+			string jsonString = reader.ReadToEnd();
+			if (jsonString is null)
+			{
+				return count;
+			}
+
+			var reservatCage = await this.context.Cages.FirstOrDefaultAsync(x => x.Type == CageType.NaturalEnclosure);
+			var aquariumCage = await this.context.Cages.FirstOrDefaultAsync(x => x.Type == CageType.Aquarium);
+			var birdCage = await this.context.Cages.FirstOrDefaultAsync(x => x.Type == CageType.Birds);
+			var terariumCage = await this.context.Cages.FirstOrDefaultAsync(x => x.Type == CageType.Terarium);
+
+			var fishFood = await this.context.Foods.FirstOrDefaultAsync(x => x.Type == FoodType.Fish);
+			var meatFood = await this.context.Foods.FirstOrDefaultAsync(x => x.Type == FoodType.Meat);
+			var vegetableFood = await this.context.Foods.FirstOrDefaultAsync(x => x.Type == FoodType.Vegetables);
+			var fruitFood = await this.context.Foods.FirstOrDefaultAsync(x => x.Type == FoodType.Fruit);
+
+			var animals = JsonConvert.DeserializeObject<AnimalSeedModel[]>(jsonString);
+			foreach (var animal in animals)
+			{
+				if (this.context.Animals.Any(x => x.Name == animal.Name))
+				{
+					continue;
+				}
+
+				Cage? currentCage = null;
+
+                if (animal.KingdomType == KingdomType.Fish && aquariumCage != null)
+                {
+					currentCage = aquariumCage;
+                }
+                else if (animal.KingdomType == KingdomType.Bird && birdCage != null)
+                {
+					currentCage = birdCage;
+                }
+                else if (animal.KingdomType == KingdomType.Reptiles && terariumCage != null)
+                {
+					currentCage = terariumCage;
+                }
+                else if (animal.KingdomType == KingdomType.Mammal && reservatCage != null)
+                {
+					currentCage = reservatCage;
+                }
+
+                if (currentCage == null)
+                {
+					continue;
+                }
+
+				var animalEntity = new Animal
+				{
+					Cage = currentCage,
+					Age = animal.Age,
+					Gender = animal.Gender,
+					KingdomType = animal.KingdomType,
+					Price = animal.Price,
+					Name = animal.Name,
+					Description = animal.Description,
+					ImageUrl = animal.ImageUrl,
+					CreatedOn = DateTime.Now,
+					CreatedBy = "System",
+					LastModifiedBy = "System",
+					LastModifiedOn = DateTime.Now
+				};
+
+				await this.context.Animals.AddAsync(animalEntity);
+
+				count++;
+
+				Food currentFood = null;
+
+				if (animal.KingdomType == KingdomType.Fish && vegetableFood != null)
+				{
+					currentFood = vegetableFood;
+				}
+				else if (animal.KingdomType == KingdomType.Bird && fishFood != null)
+				{
+					currentFood = fishFood;
+				}
+				else if (animal.KingdomType == KingdomType.Reptiles && fruitFood != null)
+				{
+					currentFood = fruitFood;
+				}
+				else if (animal.KingdomType == KingdomType.Mammal && meatFood != null)
+				{
+					currentFood = meatFood;
+				}
+
+                if (currentFood == null)
+                {
+					continue;
+                }
+
+				await this.context.AddAsync(new AnimalFood
+				{
+					Animal = animalEntity,
+					Food = currentFood,
+					Priority = 5,
+					Quantity = 10,
+					CreatedOn = DateTime.Now,
+					CreatedBy = "System",
+					LastModifiedBy = "System",
+					LastModifiedOn = DateTime.Now,
+				});
+			}
+
+			await this.context.SaveChangesAsync();
+			return count;
+		}
+
+		public async Task<int> SeedEventsAsync()
+        {
+			var count = 0;
+			var cage = await this.context.Cages.FirstOrDefaultAsync();
+            if (cage == null)
+            {
+				return count;
+            }
+
+			var currentDir = Directory.GetCurrentDirectory();
+			using var reader = new StreamReader($"{currentDir}/SeedData/Events.json");
 			string jsonString = reader.ReadToEnd();
             if (jsonString is null)
             {
 				return count;
             }
 
-			var tunnings = JsonConvert.DeserializeObject<TunningSeedModel[]>(jsonString);
-			foreach (var tunning in tunnings)
+			var events = JsonConvert.DeserializeObject<EventSeedModel[]>(jsonString);
+			foreach (var eventData in events)
 			{
-                if (this.context.Tunings.Any(x => x.Name == tunning.Name))
-                {
-					continue;
-                }
 
-				await this.context.Tunings.AddAsync(new Tuning
+				await this.context.Events.AddAsync(new Event
 				{
-					Name = tunning.Name,
-					Function = tunning.Function,
-					Description = tunning.Description,
-					ImageUrl = tunning.ImageUrl,
-					Brand = tunning.Brand,
+					Cage = cage,
+					Type = eventData.Type,
+					Description = eventData.Description,
 					CreatedOn = DateTime.Now,
-					CreatedBy = "System"
+					CreatedBy = "System",
+					LastModifiedBy = "System",
+					LastModifiedOn = DateTime.Now
 				});
 
 				count++;
@@ -124,171 +213,38 @@ namespace PuWeb.Services
 			return count;
 		}
 
-		public async Task<int> SeedBodyStylesAsync()
+		public async Task<int> SeedFoodsAsync()
 		{
 			var count = 0;
 			var currentDir = Directory.GetCurrentDirectory();
-			using var reader = new StreamReader($"{currentDir}/SeedData/BodyStyles.json");
+			using var reader = new StreamReader($"{currentDir}/SeedData/Foods.json");
 			string jsonString = reader.ReadToEnd();
 			if (jsonString is null)
 			{
 				return count;
 			}
 
-			var bodyStyles = JsonConvert.DeserializeObject<BodyStyleSeedModel[]>(jsonString);
-			foreach (var bodyStyle in bodyStyles)
+			var foods = JsonConvert.DeserializeObject<FoodSeedModel[]>(jsonString);
+			foreach (var food in foods)
 			{
-				if (this.context.BodyStyles.Any(x => x.Name == bodyStyle.Name))
+				if (this.context.Foods.Any(x => x.Name == food.Name))
 				{
 					continue;
 				}
 
-				await this.context.BodyStyles.AddAsync(new BodyStyle
+				await this.context.Foods.AddAsync(new Food
 				{
-					Name = bodyStyle.Name,
-					Description = bodyStyle.Description,
+					Colories = food.Colories,
+					ImageUrl = food.ImageUrl,
+					Price = food.Price,
+					Type = food.Type,
+					UsageType = food.UsageType,
+					Name = food.Name,
+					Description = food.Description,
 					CreatedOn = DateTime.Now,
-					CreatedBy = "System"
-				});
-
-				count++;
-			}
-
-			await this.context.SaveChangesAsync();
-			return count;
-		}
-
-		public async Task<int> SeedColorsAsync()
-		{
-			var count = 0;
-			var currentDir = Directory.GetCurrentDirectory();
-			using var reader = new StreamReader($"{currentDir}/SeedData/Colors.json");
-			string jsonString = reader.ReadToEnd();
-			if (jsonString is null)
-			{
-				return count;
-			}
-
-			var colors = JsonConvert.DeserializeObject<ColorSeedModel[]>(jsonString);
-			foreach (var color in colors)
-			{
-				if (this.context.Colors.Any(x => x.Code == color.Code))
-				{
-					continue;
-				}
-
-				await this.context.Colors.AddAsync(new Color
-				{
-					Code = color.Code,
-					CreatedOn = DateTime.Now,
-					CreatedBy = "System"
-				});
-
-				count++;
-			}
-
-			await this.context.SaveChangesAsync();
-			return count;
-		}
-
-		public async Task<int> SeedCarLevelsAsync()
-		{
-			var count = 0;
-			var currentDir = Directory.GetCurrentDirectory();
-			using var reader = new StreamReader($"{currentDir}/SeedData/CarLevels.json");
-			string jsonString = reader.ReadToEnd();
-			if (jsonString is null)
-			{
-				return count;
-			}
-
-			var carLevels = JsonConvert.DeserializeObject<CarLevelSeedModel[]>(jsonString);
-			foreach (var carLevel in carLevels)
-			{
-				if (this.context.CarLevels.Any(x => x.Name == carLevel.Name))
-				{
-					continue;
-				}
-
-				await this.context.CarLevels.AddAsync(new CarLevel
-				{
-					Name = carLevel.Name,
-					CreatedOn = DateTime.Now,
-					CreatedBy = "System"
-				});
-
-				count++;
-			}
-
-			await this.context.SaveChangesAsync();
-			return count;
-		}
-
-		public async Task<int> SeedConditionsAsync()
-		{
-			var count = 0;
-			var currentDir = Directory.GetCurrentDirectory();
-			using var reader = new StreamReader($"{currentDir}/SeedData/Conditions.json");
-			string jsonString = reader.ReadToEnd();
-			if (jsonString is null)
-			{
-				return count;
-			}
-
-			var conditions = JsonConvert.DeserializeObject<ConditionSeedModel[]>(jsonString);
-			foreach (var condition in conditions)
-			{
-				if (this.context.Conditions.Any(x => x.Name == condition.Name && x.Reason == condition.Reason))
-				{
-					continue;
-				}
-
-				await this.context.Conditions.AddAsync(new Condition
-				{
-					Name = condition.Name,
-					Reason = condition.Reason,
-					Explanation = condition.Explanation,
-					CreatedOn = DateTime.Now,
-					CreatedBy = "System"
-				});
-
-				count++;
-			}
-
-			await this.context.SaveChangesAsync();
-			return count;
-		}
-
-		public async Task<int> SeedCarMakesAsync()
-		{
-			var count = 0;
-			var currentDir = Directory.GetCurrentDirectory();
-			using var reader = new StreamReader($"{currentDir}/SeedData/CarMakes.json");
-			string jsonString = reader.ReadToEnd();
-			if (jsonString is null)
-			{
-				return count;
-			}
-
-			var carMakes = JsonConvert.DeserializeObject<CarMakeSeedModel[]>(jsonString);
-			foreach (var carMake in carMakes)
-			{
-				if (this.context.CarMakes.Any(x => x.Name == carMake.Name))
-				{
-					continue;
-				}
-
-				await this.context.CarMakes.AddAsync(new CarMake
-				{
-					Name = carMake.Name,
-					Description = carMake.Description,
-					FoundedBy = carMake.FoundedBy,
-					Headquarters = carMake.Headquarters,
-					FullName = carMake.FullName,
-					ImageUrl = carMake.ImageUrl,
-					FoundedIn = DateTime.ParseExact(carMake.FoundedIn, "dd/MM/yyyy", CultureInfo.InvariantCulture),
-					CreatedOn = DateTime.Now,
-					CreatedBy = "System"
+					CreatedBy = "System",
+					LastModifiedBy = "System",
+					LastModifiedOn = DateTime.Now
 				});
 
 				count++;

@@ -1,36 +1,35 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 using ZooErp.Models.Enums;
 
-namespace ZooErp.Data.Entities
+namespace ZooErp.SeedData.Models
 {
-	public class Cage: BaseModel
+	public class CageSeedModel
 	{
-		public Cage()
-		{
-			this.Events = new HashSet<Event>();
-            this.Animals = new HashSet<Animal>();
-		}
-
+        [JsonProperty("capacity")]
         public int Capacity { get; set; }
 
+        [JsonProperty("area")]
         public double Area { get; set; }
 
+        [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("description")]
         public string Description { get; set; }
 
+        [JsonProperty("imageUrl")]
         public string ImageUrl { get; set; }
 
+        [JsonProperty("location")]
         public string Location { get; set; }
 
+        [JsonProperty("rating")]
         public float Rating { get; set; }
 
+        [JsonProperty("type")]
         public CageType Type { get; set; }
 
-        public ICollection<Event> Events { get; set; }
-
-        public ICollection<Animal> Animals { get; set; }
     }
 }
 

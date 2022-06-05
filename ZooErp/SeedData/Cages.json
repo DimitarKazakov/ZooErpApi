@@ -1,0 +1,42 @@
+﻿[
+  {
+    "capacity": 8,
+    "area": 200.5,
+    "name": "Bird Cage #3",
+    "description": "Big closed cage for birst where they can fly freely",
+    "imageUrl": "https://www.stlzoo.org/files/3315/3721/2573/FLIGHT_CAGE_6089_WINKELMAN.jpg",
+    "location": "Near the lake at the bottom left.",
+    "rating": 4.2,
+    "type": 2
+  },
+  {
+    "capacity": 6,
+    "area": 50.3,
+    "name": "Tropical Aquarium #1",
+    "description": "Big aquarium for tropical fish and sea creatures",
+    "imageUrl": "https://www.holidify.com/images/cmsuploads/compressed/Aquaria_KLCC_fish_tank_20200110214934.jpg",
+    "location": "Below ground in the delphinarium",
+    "rating": 4.5,
+    "type": 3
+  },
+  {
+    "capacity": 3,
+    "area": 10.81,
+    "name": "Lizard Terarium #2",
+    "description": "Small and cozy place for small snakes or lizards.",
+    "imageUrl": "https://aquarium.bg/image/cache/Razni/exo-terra-natural-terrarium-45-90-cmpt2610-5623-800x450.jpg",
+    "location": "Indoors, near the exit",
+    "rating": 3.8,
+    "type": 4
+  },
+  {
+    "capacity": 10,
+    "area": 500.90,
+    "name": "Africa Enclosure #1",
+    "description": "Natural enclosure with savanah terrain and aftican animals",
+    "imageUrl": "https://images.saymedia-content.com/.image/t_share/MTc2MjkyMjIxMzgwMDc2NzE3/dallas-zoo-is-largest-zoo-in-texas.jpg",
+    "location": "At the center of the zoo",
+    "rating": 5,
+    "type": 10
+  }
+]

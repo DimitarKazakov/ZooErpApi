@@ -9,7 +9,9 @@ namespace ZooErp.Models
 
         public int? Take { get; set; }
 
-        public DateTime? FilterDate { get; set; }
+        public string CreatedOnDate { get; set; }
+
+        public string LastModifiedOnDate { get; set; }
     }
 }
 
