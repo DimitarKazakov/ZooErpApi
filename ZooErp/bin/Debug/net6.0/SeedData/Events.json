@@ -1,0 +1,23 @@
+﻿[
+
+	{
+		"type": 4,
+		"description": "Food stock empty in this cage."
+	},
+	{
+		"type": 9,
+		"description": "Cage is dirty. It needs to be cleaned."
+	},
+	{
+		"type": 5,
+		"description": "Food stock refilled in this cage."
+	},
+	{
+		"type": 10,
+		"description": "Cage is shining as brand new."
+	},
+	{
+		"type": 11,
+		"description": "There was an accident in this cage. The lights went off!"
+	}
+]

@@ -96,14 +96,6 @@ builder.Services.AddTransient<FoodService>();
 builder.Services.AddTransient<AnimalService>();
 
 builder.Services.AddTransient<SeedService>();
-builder.Services.AddTransient<ColorService>();
-builder.Services.AddTransient<CarLevelService>();
-builder.Services.AddTransient<CarMakeService>();
-builder.Services.AddTransient<ConditionsService>();
-builder.Services.AddTransient<FuelTypesService>();
-builder.Services.AddTransient<ExtrasService>();
-builder.Services.AddTransient<TuningService>();
-builder.Services.AddTransient<CarService>();
 
 builder.Services.AddSingleton<IConfiguration>(configuration);
 

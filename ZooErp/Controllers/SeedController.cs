@@ -43,6 +43,13 @@ namespace ZooErp.Controllers
             await this.seedService.SeedAnimalsAsync();
             return true;
         }
+
+        [HttpPost("[action]")]
+        [Authorize(Policy = "Administrator")]
+        public async Task<bool> ResetDb()
+        {
+            return await this.seedService.ResetDb();
+        } 
     }
 }
 

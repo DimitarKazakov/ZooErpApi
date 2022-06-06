@@ -1,0 +1,57 @@
+﻿[
+  {
+    "description": "Very beatiful exotic fish. It was in the Finding of Nemo",
+    "name": "Clown Fish",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Amphiprion_ocellaris_%28Clown_anemonefish%29_by_Nick_Hobgood.jpg/640px-Amphiprion_ocellaris_%28Clown_anemonefish%29_by_Nick_Hobgood.jpg",
+    "kingdomType": 6,
+    "age": 1,
+    "gender": 2,
+    "price": 200.50
+  },
+  {
+    "description": "Very rare bird. The symbol of USA",
+    "name": "Bold Eagle",
+    "imageUrl": "https://media.timeout.com/images/105860531/image.jpg",
+    "kingdomType": 2,
+    "age": 12,
+    "gender": 1,
+    "price": 30000.10
+  },
+  {
+    "description": "When it gets nervous it becomes like a baloon",
+    "name": "Puffer Fish",
+    "imageUrl": "https://i.hurimg.com/i/hdn/75/0x0/5e6f23bdc03c0e18c0b0640e.jpg",
+    "kingdomType": 6,
+    "age": 2,
+    "gender": 3,
+    "price": 30.0
+  },
+  {
+    "description": "Small adorable and cute little lizard",
+    "name": "Gecon",
+    "imageUrl": "https://media.istockphoto.com/photos/tuqueque-5-picture-id533562020?s=612x612",
+    "kingdomType": 3,
+    "age": 20,
+    "gender": 3,
+    "price": 50.0
+  },
+  {
+    "description": "The biggest mammal in africa",
+    "name": "Elephant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/640px-African_Bush_Elephant.jpg",
+    "kingdomType": 1,
+    "age": 50,
+    "gender": 2,
+    "price": 200000.0
+  },
+  {
+    "description": "The king of the jungle",
+    "name": "Lion",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/73/Lion_waiting_in_Namibia.jpg",
+    "kingdomType": 1,
+    "age": 32,
+    "gender": 1,
+    "price": 150000.0
+  }
+]
+

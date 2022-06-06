@@ -18,6 +18,13 @@ namespace ZooErp.Services
 			this.context = context;
 		}
 
+		public async Task<bool> ResetDb()
+        {
+			await this.context.Database.EnsureDeletedAsync();
+			await this.context.Database.EnsureCreatedAsync();
+			return true;
+        }
+
 		public async Task<int> SeedCagesAsync()
 		{
 			var count = 0;

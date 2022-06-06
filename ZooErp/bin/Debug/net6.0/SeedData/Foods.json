@@ -1,0 +1,47 @@
+﻿[
+	{
+		"price": 15.30,
+		"description": "Very good and juice pork mets. Favorite food of carnivours.",
+		"colories": 213.50,
+		"imageUrl": "https://image.shutterstock.com/image-photo/meat-pork-slices-loin-on-260nw-561686899.jpg",
+		"name": "Pork Meat",
+		"usageType": 1,
+		"type": 5
+	},
+	{
+		"price": 30.28,
+		"description": "High protein food with low fat ideal for diets and training",
+		"colories": 150,
+		"imageUrl": "https://cdn.shopify.com/s/files/1/0226/7368/6602/products/PinkSalmonslice_900x900.jpg?v=1621871610",
+		"name": "Salmon",
+		"usageType": 2,
+		"type": 6
+	},
+	{
+		"price": 3,
+		"description": "Crunchy little bread sticks. The animals love them.",
+		"colories": 50,
+		"imageUrl": "https://www.kingarthurbaking.com/sites/default/files/styles/featured_image/public/2019-10/peppery-cheese-breadsticks.jpg?itok=IWVZZZ4k",
+		"name": "Bread Sticks",
+		"usageType": 7,
+		"type": 3
+	},
+	{
+		"price": 7.82,
+		"description": "The sweetes fruit. Everyone likes it",
+		"colories": 113.13,
+		"imageUrl": "https://ychef.files.bbci.co.uk/976x549/p07v2wjn.jpg",
+		"name": "Apples",
+		"usageType": 7,
+		"type": 1
+	},
+	{
+		"price": 8.20,
+		"description": "Crunchy juicy vegetable. Ideal for lunch time for heribivours",
+		"colories": 30,
+		"imageUrl": "https://theguisson.co.uk/wp-content/uploads/2021/02/carrorts.jpg",
+		"name": "Carrots",
+		"usageType": 4,
+		"type": 2
+	}
+]
