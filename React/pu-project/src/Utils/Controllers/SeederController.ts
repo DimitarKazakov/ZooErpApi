@@ -2,42 +2,32 @@ import { getAxiosClient } from '../axiosClient';
 
 const axiosClient = getAxiosClient();
 
-export const seedFuelTypes = async (): Promise<number> => {
-  const response = await axiosClient.post('Seeder/SeedFuelTypes');
+export const seedAnimals = async (): Promise<number> => {
+  const response = await axiosClient.post('Seeder/SeedAnimals');
   return response.data as number;
 };
 
-export const seedBodyStyles = async (): Promise<number> => {
-  const response = await axiosClient.post('Seeder/SeedBodyStyles');
+export const seedCages = async (): Promise<number> => {
+  const response = await axiosClient.post('Seeder/SeedCages');
   return response.data as number;
 };
 
-export const seedColors = async (): Promise<number> => {
-  const response = await axiosClient.post('Seeder/SeedColors');
+export const seedEvents = async (): Promise<number> => {
+  const response = await axiosClient.post('Seeder/SeedEvents');
   return response.data as number;
 };
 
-export const seedCarLevels = async (): Promise<number> => {
-  const response = await axiosClient.post('Seeder/SeedCarLevels');
+export const seedFoods = async (): Promise<number> => {
+  const response = await axiosClient.post('Seeder/SeedFoods');
   return response.data as number;
 };
 
-export const seedCarMakes = async (): Promise<number> => {
-  const response = await axiosClient.post('Seeder/SeedCarMakes');
+export const seedAllData = async (): Promise<number> => {
+  const response = await axiosClient.post('Seeder/SeedAllData');
   return response.data as number;
 };
 
-export const seedConditions = async (): Promise<number> => {
-  const response = await axiosClient.post('Seeder/SeedConditions');
-  return response.data as number;
-};
-
-export const seedExtras = async (): Promise<number> => {
-  const response = await axiosClient.post('Seeder/SeedExtras');
-  return response.data as number;
-};
-
-export const seedTunnings = async (): Promise<number> => {
-  const response = await axiosClient.post('Seeder/SeedTunnings');
-  return response.data as number;
+export const resetDb = async (): Promise<boolean> => {
+  const response = await axiosClient.post('Seeder/ResetDb');
+  return response.data as boolean;
 };
