@@ -2,23 +2,21 @@ import { EllipsisOutlined } from '@ant-design/icons';
 import { Card, Col, Row } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import React, { useEffect, useState } from 'react';
-import { CarInfoScreen } from '../Screens/Info/CarInfoScreen';
-import { CarDto } from '../Types/Get/CarDto';
-import { getAllCars } from '../Utils/Controllers/CarController';
+import { FoodInfoScreen } from '../Screens/Info/FoodInfoScreen';
+import { FoodDto } from '../Types/Get/FoodDto';
+import { getAllFoods } from '../Utils/Controllers/FoodController';
 
-const style = { background: '#0092ff', padding: '8px 0' };
-
-export const Hello = () => {
-  const [cars, setCars] = useState<CarDto[]>();
+export const FoodComponent = () => {
+  const [foods, setFoods] = useState<FoodDto[]>();
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedCar, setSelectedCar] = useState(0);
+  const [selectedFood, setSelectedFood] = useState(0);
   useEffect(() => {
-    getAllCars().then((data) => setCars(data));
+    getAllFoods().then((data) => setFoods(data));
   }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      getAllCars().then((data) => setCars(data));
+      getAllFoods().then((data) => setFoods(data));
     }, 5000);
 
     return () => clearInterval(interval);
@@ -26,33 +24,33 @@ export const Hello = () => {
   return (
     <>
       <Row gutter={16}>
-        {cars?.map((x) => {
+        {foods?.map((x) => {
           return (
             <Col className="gutter-row" span={8} key={`col${x.id}`}>
               <Card
-                key={`car${x.id}`}
+                key={`food${x.id}`}
                 style={{ width: 300, margin: '20px' }}
-                cover={<img alt="car" src={x.imageUrl} />}
+                cover={<img alt="food" src={x.imageUrl} />}
                 actions={[
                   <EllipsisOutlined
                     onClick={() => {
-                      setSelectedCar(x.id);
+                      setSelectedFood(x.id);
                       setIsModalVisible(true);
                     }}
                     key="ellipsis"
                   />,
                 ]}
               >
-                <Meta title={x.model} description={`${x.price} lv.`} />
+                <Meta title={x.name} description={x.description} />
               </Card>
             </Col>
           );
         })}
       </Row>
-      <CarInfoScreen
+      <FoodInfoScreen
         visible={isModalVisible}
         setIsModalVisible={setIsModalVisible}
-        id={selectedCar}
+        id={selectedFood}
       />
     </>
   );
