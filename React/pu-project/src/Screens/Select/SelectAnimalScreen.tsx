@@ -1,8 +1,8 @@
 import React from 'react';
-import { SelectConditionForm } from '../../Components/Forms/Select/SelectConditionForm';
+import { SelectAnimalForm } from '../../Components/Forms/Select/SelectAnimalForm';
 import { ModalForm } from '../../Components/ModalForm';
 
-export const SelectConditionScreen = (props: {
+export const SelectAnimalScreen = (props: {
   visible: boolean;
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   setId: React.Dispatch<React.SetStateAction<number>>;
@@ -12,9 +12,9 @@ export const SelectConditionScreen = (props: {
 
   return (
     <ModalForm
-      content={<SelectConditionForm setId={setId} action={action} />}
+      content={<SelectAnimalForm setId={setId} action={action} />}
       visible={visible}
-      name="Select Condition"
+      name="Select Animal"
       setIsModalVisible={setIsModalVisible}
     />
   );

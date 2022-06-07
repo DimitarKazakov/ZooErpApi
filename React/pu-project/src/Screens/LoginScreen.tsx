@@ -43,7 +43,7 @@ export const LoginScreen = () => {
         <Image
           preview={false}
           width="40vw"
-          src="https://thumbs.dreamstime.com/b/automobile-repair-car-shop-logo-concept-label-branding-vector-automotive-service-template-198223655.jpg"
+          src="https://i.pinimg.com/originals/8c/a6/49/8ca649e7b26a6297995ae6851bbbbd4d.png"
         />
         <Form
           {...layout}

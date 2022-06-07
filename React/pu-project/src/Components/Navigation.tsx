@@ -668,9 +668,7 @@ export const Navigation = (props: { content: React.ReactNode; selected: string }
           action={selectedCarAction}
         />
       </Content>
-      <Footer style={{ textAlign: 'center' }}>
-        Auto Repait ©2022 Created by Dimitur K. and Atanas A.
-      </Footer>
+      <Footer style={{ textAlign: 'center' }}>Zoo Erp ©2022 Created by Dimitur Kazakov</Footer>
     </Layout>
   );
 };

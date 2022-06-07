@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button, Select, Popconfirm } from 'antd';
-import { deleteColor, getAllColors } from '../../../Utils/Controllers/ColorController';
-import { ColorDto } from '../../../Types/Get/ColorDto';
+import { deleteEvent, getEventOptions } from '../../../Utils/Controllers/EventController';
+import { EventOptionsDto } from '../../../Types/Get/EventOptionsDto';
 
 const layout = {
   labelCol: { span: 8 },
@@ -13,21 +13,21 @@ const tailLayout = {
 
 const { Option } = Select;
 
-export const SelectColorForm = (props: {
+export const SelectEventForm = (props: {
   setId: React.Dispatch<React.SetStateAction<number>>;
   action: string;
 }) => {
   const [form] = Form.useForm();
-  const [colors, setColors] = useState<ColorDto[]>();
+  const [options, setOptions] = useState<EventOptionsDto[]>();
 
   useEffect(() => {
-    getAllColors().then((data) => setColors(data));
+    getEventOptions().then((data) => setOptions(data));
   }, []);
 
   const { setId, action } = props;
 
   const deleteRow = async (id: number) => {
-    await deleteColor(id);
+    await deleteEvent(id);
     onFinish({ id });
   };
 
@@ -39,20 +39,20 @@ export const SelectColorForm = (props: {
     <Form
       {...layout}
       form={form}
-      name="Select Colors Form"
+      name="Select Event Form"
       onFinish={async () => onFinish(form.getFieldsValue())}
     >
-      <Form.Item name="id" label="Color" rules={[{ required: true }]}>
+      <Form.Item name="id" label="Event" rules={[{ required: true }]}>
         <Select
           showSearch
           style={{ width: 200 }}
           placeholder="Search to Select"
           optionFilterProp="children"
         >
-          {colors?.map((x) => {
+          {options?.map((x) => {
             return (
               <Option key={x.id} value={x.id}>
-                {x.code}
+                {x.name}
               </Option>
             );
           })}
@@ -65,10 +65,7 @@ export const SelectColorForm = (props: {
           </Button>
         )}
         {action === 'Delete' && (
-          <Popconfirm
-            title="Are you sure. You will delete all cars with that color"
-            onConfirm={() => deleteRow(form.getFieldValue('id'))}
-          >
+          <Popconfirm title="Are you sure." onConfirm={() => deleteRow(form.getFieldValue('id'))}>
             <Button type="primary" danger>
               Delete
             </Button>

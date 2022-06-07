@@ -1,8 +1,8 @@
 import React from 'react';
-import { SelectColorForm } from '../../Components/Forms/Select/SelectColorForm';
+import { SelectEventForm } from '../../Components/Forms/Select/SelectEventForm';
 import { ModalForm } from '../../Components/ModalForm';
 
-export const SelectColorScreen = (props: {
+export const SelectEventScreen = (props: {
   visible: boolean;
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   setId: React.Dispatch<React.SetStateAction<number>>;
@@ -12,9 +12,9 @@ export const SelectColorScreen = (props: {
 
   return (
     <ModalForm
-      content={<SelectColorForm setId={setId} action={action} />}
+      content={<SelectEventForm setId={setId} action={action} />}
       visible={visible}
-      name="Select Color"
+      name="Select Event"
       setIsModalVisible={setIsModalVisible}
     />
   );

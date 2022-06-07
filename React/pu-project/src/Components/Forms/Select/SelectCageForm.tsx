@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button, Select, Popconfirm } from 'antd';
-import { CarDto } from '../../../Types/Get/CarDto';
-import { deleteCar, getAllCars } from '../../../Utils/Controllers/CarController';
+import { deleteCage, getCageOptions } from '../../../Utils/Controllers/CageController';
+import { CageOptionsDto } from '../../../Types/Get/CageOptionsDto';
 
 const layout = {
   labelCol: { span: 8 },
@@ -13,21 +13,21 @@ const tailLayout = {
 
 const { Option } = Select;
 
-export const SelectCarForm = (props: {
+export const SelectCageForm = (props: {
   setId: React.Dispatch<React.SetStateAction<number>>;
   action: string;
 }) => {
   const [form] = Form.useForm();
-  const [cars, setCars] = useState<CarDto[]>();
+  const [options, setOptions] = useState<CageOptionsDto[]>();
 
   useEffect(() => {
-    getAllCars().then((data) => setCars(data));
+    getCageOptions().then((data) => setOptions(data));
   }, []);
 
   const { setId, action } = props;
 
   const deleteRow = async (id: number) => {
-    await deleteCar(id);
+    await deleteCage(id);
     onFinish({ id });
   };
 
@@ -39,27 +39,27 @@ export const SelectCarForm = (props: {
     <Form
       {...layout}
       form={form}
-      name="Select Car Form"
+      name="Select Cage Form"
       onFinish={async () => onFinish(form.getFieldsValue())}
     >
-      <Form.Item name="id" label="Car" rules={[{ required: true }]}>
+      <Form.Item name="id" label="Cage" rules={[{ required: true }]}>
         <Select
           showSearch
           style={{ width: 200 }}
           placeholder="Search to Select"
           optionFilterProp="children"
         >
-          {cars?.map((x) => {
+          {options?.map((x) => {
             return (
               <Option key={x.id} value={x.id}>
-                {x.model}
+                {x.name}
               </Option>
             );
           })}
         </Select>
       </Form.Item>
       <Form.Item {...tailLayout}>
-        {(action === 'Update' || action === 'Extras' || action === 'Tunnings') && (
+        {action === 'Update' && (
           <Button type="primary" htmlType="submit">
             Search
           </Button>

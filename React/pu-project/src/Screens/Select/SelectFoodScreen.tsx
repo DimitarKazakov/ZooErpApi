@@ -1,8 +1,8 @@
 import React from 'react';
-import { SelectFuelTypeForm } from '../../Components/Forms/Select/SelectFuelTypeForm';
+import { SelectFoodForm } from '../../Components/Forms/Select/SelectFoodForm';
 import { ModalForm } from '../../Components/ModalForm';
 
-export const SelectFuelTypeScreen = (props: {
+export const SelectFoodScreen = (props: {
   visible: boolean;
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   setId: React.Dispatch<React.SetStateAction<number>>;
@@ -12,9 +12,9 @@ export const SelectFuelTypeScreen = (props: {
 
   return (
     <ModalForm
-      content={<SelectFuelTypeForm setId={setId} action={action} />}
+      content={<SelectFoodForm setId={setId} action={action} />}
       visible={visible}
-      name="Select Fuel Type"
+      name="Select Food"
       setIsModalVisible={setIsModalVisible}
     />
   );

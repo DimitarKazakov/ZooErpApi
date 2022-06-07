@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button, Select, Popconfirm } from 'antd';
-import { CarLevelDto } from '../../../Types/Get/CarLevelDto';
-import { getAllCarLevels, deleteCarLevel } from '../../../Utils/Controllers/CarLevelController';
+import { deleteAnimal, getAnimalOptions } from '../../../Utils/Controllers/AnimalController';
+import { AnimalOptionsDto } from '../../../Types/Get/AnimalOptionsDto';
 
 const layout = {
   labelCol: { span: 8 },
@@ -13,21 +13,21 @@ const tailLayout = {
 
 const { Option } = Select;
 
-export const SelectCarLevelForm = (props: {
+export const SelectAnimalForm = (props: {
   setId: React.Dispatch<React.SetStateAction<number>>;
   action: string;
 }) => {
   const [form] = Form.useForm();
-  const [carLevels, setCarLevels] = useState<CarLevelDto[]>();
+  const [options, setOptions] = useState<AnimalOptionsDto[]>();
 
   useEffect(() => {
-    getAllCarLevels().then((data) => setCarLevels(data));
+    getAnimalOptions().then((data) => setOptions(data));
   }, []);
 
   const { setId, action } = props;
 
   const deleteRow = async (id: number) => {
-    await deleteCarLevel(id);
+    await deleteAnimal(id);
     onFinish({ id });
   };
 
@@ -39,17 +39,17 @@ export const SelectCarLevelForm = (props: {
     <Form
       {...layout}
       form={form}
-      name="Select Car Level Form"
+      name="Select Animal Form"
       onFinish={async () => onFinish(form.getFieldsValue())}
     >
-      <Form.Item name="id" label="Car Level" rules={[{ required: true }]}>
+      <Form.Item name="id" label="Animal" rules={[{ required: true }]}>
         <Select
           showSearch
           style={{ width: 200 }}
           placeholder="Search to Select"
           optionFilterProp="children"
         >
-          {carLevels?.map((x) => {
+          {options?.map((x) => {
             return (
               <Option key={x.id} value={x.id}>
                 {x.name}
@@ -65,10 +65,7 @@ export const SelectCarLevelForm = (props: {
           </Button>
         )}
         {action === 'Delete' && (
-          <Popconfirm
-            title="Are you sure. You will delete all cars with that car level"
-            onConfirm={() => deleteRow(form.getFieldValue('id'))}
-          >
+          <Popconfirm title="Are you sure." onConfirm={() => deleteRow(form.getFieldValue('id'))}>
             <Button type="primary" danger>
               Delete
             </Button>

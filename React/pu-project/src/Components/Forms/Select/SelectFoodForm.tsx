@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button, Select, Popconfirm } from 'antd';
-import { getAllCarMakes, deleteCarMake } from '../../../Utils/Controllers/CarMakeController';
-import { CarMakeDto } from '../../../Types/Get/CarMakeDto';
+import { deleteFood, getFoodOptions } from '../../../Utils/Controllers/FoodController';
+import { FoodOptionsDto } from '../../../Types/Get/FoodOptionsDto';
 
 const layout = {
   labelCol: { span: 8 },
@@ -13,21 +13,21 @@ const tailLayout = {
 
 const { Option } = Select;
 
-export const SelectCarMakeForm = (props: {
+export const SelectFoodForm = (props: {
   setId: React.Dispatch<React.SetStateAction<number>>;
   action: string;
 }) => {
   const [form] = Form.useForm();
-  const [carMakes, setCarMakes] = useState<CarMakeDto[]>();
+  const [options, setOptions] = useState<FoodOptionsDto[]>();
 
   useEffect(() => {
-    getAllCarMakes().then((data) => setCarMakes(data));
+    getFoodOptions().then((data) => setOptions(data));
   }, []);
 
   const { setId, action } = props;
 
   const deleteRow = async (id: number) => {
-    await deleteCarMake(id);
+    await deleteFood(id);
     onFinish({ id });
   };
 
@@ -39,17 +39,17 @@ export const SelectCarMakeForm = (props: {
     <Form
       {...layout}
       form={form}
-      name="Select Car Make Form"
+      name="Select Food Form"
       onFinish={async () => onFinish(form.getFieldsValue())}
     >
-      <Form.Item name="id" label="Car Make" rules={[{ required: true }]}>
+      <Form.Item name="id" label="Food" rules={[{ required: true }]}>
         <Select
           showSearch
           style={{ width: 200 }}
           placeholder="Search to Select"
           optionFilterProp="children"
         >
-          {carMakes?.map((x) => {
+          {options?.map((x) => {
             return (
               <Option key={x.id} value={x.id}>
                 {x.name}
@@ -65,10 +65,7 @@ export const SelectCarMakeForm = (props: {
           </Button>
         )}
         {action === 'Delete' && (
-          <Popconfirm
-            title="Are you sure. You will delete all cars with that car make"
-            onConfirm={() => deleteRow(form.getFieldValue('id'))}
-          >
+          <Popconfirm title="Are you sure." onConfirm={() => deleteRow(form.getFieldValue('id'))}>
             <Button type="primary" danger>
               Delete
             </Button>
