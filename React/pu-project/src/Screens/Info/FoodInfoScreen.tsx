@@ -1,8 +1,8 @@
 import React from 'react';
 import { ModalForm } from '../../Components/ModalForm';
-import { TunningView } from '../../Components/View/TunningView';
+import { FoodView } from '../../Components/View/FoodView';
 
-export const TunningInfoScreen = (props: {
+export const FoodInfoScreen = (props: {
   visible: boolean;
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   id: number;
@@ -11,9 +11,9 @@ export const TunningInfoScreen = (props: {
 
   return (
     <ModalForm
-      content={<TunningView id={id} />}
+      content={<FoodView id={id} />}
       visible={visible}
-      name="Tunning Info"
+      name="Food Info"
       setIsModalVisible={setIsModalVisible}
     />
   );

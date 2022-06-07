@@ -1,83 +1,53 @@
 import { notification } from 'antd';
 import {
-  seedBodyStyles,
-  seedCarLevels,
-  seedCarMakes,
-  seedColors,
-  seedConditions,
-  seedExtras,
-  seedFuelTypes,
-  seedTunnings,
+  seedAllData,
+  seedAnimals,
+  seedCages,
+  seedEvents,
+  seedFoods,
 } from './Controllers/SeederController';
 
-export const seedFuelTypesHelper = async () => {
-  const count = await seedFuelTypes();
+export const seedAnimalsHelper = async () => {
+  const count = await seedAnimals();
   if (count) {
-    notification.success({ message: `${count} Fuel Types were seeded` });
+    notification.success({ message: `${count} Animals were seeded` });
   } else {
-    notification.warning({ message: `No Fuel Types were seeded...` });
+    notification.warning({ message: `No Animals were seeded...` });
   }
 };
 
-export const seedColorsHelper = async () => {
-  const count = await seedColors();
+export const seedCagesHelper = async () => {
+  const count = await seedCages();
   if (count) {
-    notification.success({ message: `${count} Colors were seeded` });
+    notification.success({ message: `${count} Cages were seeded` });
   } else {
-    notification.warning({ message: `No Colors were seeded...` });
+    notification.warning({ message: `No Cages were seeded...` });
   }
 };
 
-export const seedConditionsHelper = async () => {
-  const count = await seedConditions();
+export const seedEventsHelper = async () => {
+  const count = await seedEvents();
   if (count) {
-    notification.success({ message: `${count} Conditions were seeded` });
+    notification.success({ message: `${count} Events were seeded` });
   } else {
-    notification.warning({ message: `No Conditions were seeded...` });
+    notification.warning({ message: `No Events were seeded...` });
   }
 };
 
-export const seedCarMakesHelper = async () => {
-  const count = await seedCarMakes();
+export const seedFoodsHelper = async () => {
+  const count = await seedFoods();
   if (count) {
-    notification.success({ message: `${count} Car Makes were seeded` });
+    notification.success({ message: `${count} Foods were seeded` });
   } else {
-    notification.warning({ message: `No Car Makes were seeded...` });
+    notification.warning({ message: `No Foods were seeded...` });
   }
 };
 
-export const seedCarLevelsHelper = async () => {
-  const count = await seedCarLevels();
-  if (count) {
-    notification.success({ message: `${count} Car Levels were seeded` });
+export const seedAllDataHelper = async () => {
+  const success = await seedAllData();
+  if (success) {
+    notification.success({ message: 'All Data was seeded' });
   } else {
-    notification.warning({ message: `No Car Levels were seeded...` });
-  }
-};
-
-export const seedBodyStylesHelper = async () => {
-  const count = await seedBodyStyles();
-  if (count) {
-    notification.success({ message: `${count} Body Styles were seeded` });
-  } else {
-    notification.warning({ message: `No Body Styles were seeded...` });
-  }
-};
-
-export const seedExtrasHelper = async () => {
-  const count = await seedExtras();
-  if (count) {
-    notification.success({ message: `${count} Extras were seeded` });
-  } else {
-    notification.warning({ message: `No Extras were seeded...` });
-  }
-};
-
-export const seedTunningsHelper = async () => {
-  const count = await seedTunnings();
-  if (count) {
-    notification.success({ message: `${count} Tunnings were seeded` });
-  } else {
-    notification.warning({ message: `No Tunnings were seeded...` });
+    notification.warning({ message: 'Something went wrong...' });
   }
 };

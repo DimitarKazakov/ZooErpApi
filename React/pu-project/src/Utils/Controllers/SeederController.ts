@@ -22,9 +22,9 @@ export const seedFoods = async (): Promise<number> => {
   return response.data as number;
 };
 
-export const seedAllData = async (): Promise<number> => {
+export const seedAllData = async (): Promise<boolean> => {
   const response = await axiosClient.post('Seeder/SeedAllData');
-  return response.data as number;
+  return response.data as boolean;
 };
 
 export const resetDb = async (): Promise<boolean> => {

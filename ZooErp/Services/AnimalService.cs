@@ -37,7 +37,8 @@ namespace ZooErp.Services
 				.Animals
 				.Where(x => (!filter.Id.HasValue || x.Id == filter.Id)
 							&& (!createdOnFilter.HasValue || DateTime.Compare(x.CreatedOn, (DateTime)createdOnFilter) >= 0)
-							&& (!lastModifiedOnFilter.HasValue || DateTime.Compare(x.LastModifiedOn, (DateTime)lastModifiedOnFilter) >= 0))
+							&& (!lastModifiedOnFilter.HasValue || DateTime.Compare(x.LastModifiedOn, (DateTime)lastModifiedOnFilter) >= 0)
+							&& (!(filter.Description != null) || x.Description.ToLower().Contains(filter.Description.ToLower())))
 				.Select(x => new AnimalDto
 				{
 					Age = x.Age,

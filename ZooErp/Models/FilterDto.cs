@@ -9,6 +9,8 @@ namespace ZooErp.Models
 
         public int? Take { get; set; }
 
+        public string? Description { get; set; }
+
         public string? CreatedOnDate { get; set; }
 
         public string? LastModifiedOnDate { get; set; }

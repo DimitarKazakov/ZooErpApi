@@ -1,8 +1,8 @@
 import React from 'react';
 import { ModalForm } from '../../Components/ModalForm';
-import { CarMakeView } from '../../Components/View/CarMakeView';
+import { AnimalView } from '../../Components/View/AnimalView';
 
-export const CarMakeInfoScreen = (props: {
+export const AnimalInfoScreen = (props: {
   visible: boolean;
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   id: number;
@@ -11,9 +11,9 @@ export const CarMakeInfoScreen = (props: {
 
   return (
     <ModalForm
-      content={<CarMakeView id={id} />}
+      content={<AnimalView id={id} />}
       visible={visible}
-      name="Car Make Info"
+      name="Animal Info"
       setIsModalVisible={setIsModalVisible}
     />
   );
