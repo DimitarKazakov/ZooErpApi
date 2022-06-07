@@ -1,5 +1,6 @@
 import { notification } from 'antd';
 import {
+  resetDb,
   seedAllData,
   seedAnimals,
   seedCages,
@@ -47,6 +48,15 @@ export const seedAllDataHelper = async () => {
   const success = await seedAllData();
   if (success) {
     notification.success({ message: 'All Data was seeded' });
+  } else {
+    notification.warning({ message: 'Something went wrong...' });
+  }
+};
+
+export const resetDatabaseHelper = async () => {
+  const success = await resetDb();
+  if (success) {
+    notification.success({ message: 'Database was reset' });
   } else {
     notification.warning({ message: 'Something went wrong...' });
   }
