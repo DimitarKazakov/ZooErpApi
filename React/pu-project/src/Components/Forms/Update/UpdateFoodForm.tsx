@@ -43,7 +43,7 @@ export const UpdateFoodForm = (props: {
         imageUrl: data[0].imageUrl,
         description: data[0].description,
         price: data[0].price,
-        animalIds: animalOptions?.filter((x) => animalNames.includes(x.name)),
+        animalIds: animalOptions?.filter((x) => animalNames.includes(x.name)).map((x) => x.id),
       });
     });
   }, [id]);
@@ -73,14 +73,14 @@ export const UpdateFoodForm = (props: {
       <Form.Item
         name={nameof<CreateFoodDto>((x) => x.name)}
         label="Name"
-        rules={[{ required: true }]}
+        rules={[{ required: true, max: 20 }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
         name={nameof<CreateFoodDto>((x) => x.imageUrl)}
         label="Image Url"
-        rules={[{ required: true }]}
+        rules={[{ required: true, max: 500 }]}
       >
         <Input
           onChange={() => setImageUrl(form.getFieldValue(nameof<CreateFoodDto>((x) => x.imageUrl)))}
@@ -100,14 +100,14 @@ export const UpdateFoodForm = (props: {
         label="Calories"
         rules={[{ required: true }]}
       >
-        <InputNumber min={1.5} max={10_000} defaultValue={100.5} />;
+        <InputNumber min={1.5} max={10_000} defaultValue={100.5} />
       </Form.Item>
       <Form.Item
         name={nameof<CreateFoodDto>((x) => x.price)}
         label="Price"
         rules={[{ required: true }]}
       >
-        <InputNumber min={1.5} max={1_000_000} defaultValue={50.5} />;
+        <InputNumber min={1.5} max={1_000_000} defaultValue={50.5} />
       </Form.Item>
       <Form.Item
         name={nameof<CreateFoodDto>((x) => x.type)}
@@ -213,7 +213,7 @@ export const UpdateFoodForm = (props: {
       <Form.Item
         name={nameof<CreateFoodDto>((x) => x.description)}
         label="Description"
-        rules={[{ required: true }]}
+        rules={[{ required: true, max: 500 }]}
       >
         <TextArea rows={5} maxLength={500} />
       </Form.Item>

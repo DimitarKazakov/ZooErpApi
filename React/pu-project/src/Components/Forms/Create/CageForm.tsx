@@ -47,14 +47,14 @@ export const CageForm = (props: {
       <Form.Item
         name={nameof<CreateCageDto>((x) => x.name)}
         label="Name"
-        rules={[{ required: true }]}
+        rules={[{ required: true, max: 20 }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
         name={nameof<CreateCageDto>((x) => x.imageUrl)}
         label="Image Url"
-        rules={[{ required: true }]}
+        rules={[{ required: true, max: 500 }]}
       >
         <Input
           onChange={() => setImagUrl(form.getFieldValue(nameof<CreateCageDto>((x) => x.imageUrl)))}
@@ -72,7 +72,7 @@ export const CageForm = (props: {
       <Form.Item
         name={nameof<CreateCageDto>((x) => x.location)}
         label="Location"
-        rules={[{ required: true }]}
+        rules={[{ required: true, max: 50 }]}
       >
         <Input />
       </Form.Item>
@@ -81,21 +81,21 @@ export const CageForm = (props: {
         label="Area"
         rules={[{ required: true }]}
       >
-        <InputNumber min={1.5} max={5000} defaultValue={100.5} />;
+        <InputNumber min={1.5} max={5000} defaultValue={100.5} />
       </Form.Item>
       <Form.Item
         name={nameof<CreateCageDto>((x) => x.capacity)}
         label="Capacity"
         rules={[{ required: true }]}
       >
-        <InputNumber min={1} max={200} defaultValue={2} />;
+        <InputNumber min={1} max={200} defaultValue={2} />
       </Form.Item>
       <Form.Item
         name={nameof<CreateCageDto>((x) => x.rating)}
         label="Rating"
         rules={[{ required: true }]}
       >
-        <InputNumber min={1} max={6} defaultValue={3} />;
+        <InputNumber min={1} max={6} defaultValue={3} />
       </Form.Item>
       <Form.Item
         name={nameof<CreateCageDto>((x) => x.type)}
@@ -143,7 +143,7 @@ export const CageForm = (props: {
       <Form.Item
         name={nameof<CreateCageDto>((x) => x.description)}
         label="Description"
-        rules={[{ required: true }]}
+        rules={[{ required: true, max: 500 }]}
       >
         <TextArea rows={5} maxLength={500} />
       </Form.Item>

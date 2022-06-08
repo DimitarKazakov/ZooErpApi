@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using ZooErp.Models.Enums;
 
 namespace ZooErp.Data.Entities
@@ -11,6 +12,7 @@ namespace ZooErp.Data.Entities
 
         public EventType Type { get; set; }
 
+        [StringLength(500)]
         public string Description { get; set; }
     }
 }

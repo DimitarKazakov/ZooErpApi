@@ -20,9 +20,9 @@ import {
   resetDatabaseHelper,
 } from '../Utils/dataSeeder';
 import { useState } from 'react';
-import { AnimalScreen } from '../Screens/AnimalScreen';
-import { CageScreen } from '../Screens/CageScreen';
-import { FoodScreen } from '../Screens/FoodScreen';
+import { AnimalHomeScreen } from '../Screens/AnimalHomeScreen';
+import { CageHomeScreen } from '../Screens/CageHomeScreen';
+import { FoodHomeScreen } from '../Screens/FoodHomeScreen';
 import { CreateAnimalScreen } from '../Screens/Create/CreateAnimalScreen';
 import { CreateCageScreen } from '../Screens/Create/CreateCageScreen';
 import { CreateFoodScreen } from '../Screens/Create/CreateFoodScreen';
@@ -112,13 +112,13 @@ export const Navigation = (props: { content: React.ReactNode; selected: string }
       <Header className="header">
         <div className="logo" />
         <Menu theme="dark" mode="horizontal" selectedKeys={[selected]}>
-          <Menu.Item key={nameof(AnimalScreen)} onClick={() => history('/home/animals')}>
+          <Menu.Item key={nameof(AnimalHomeScreen)} onClick={() => history('/home/animals')}>
             Animals
           </Menu.Item>
-          <Menu.Item key={nameof(CageScreen)} onClick={() => history('/home/cages')}>
+          <Menu.Item key={nameof(CageHomeScreen)} onClick={() => history('/home/cages')}>
             Cages
           </Menu.Item>
-          <Menu.Item key={nameof(FoodScreen)} onClick={() => history('/home/foods')}>
+          <Menu.Item key={nameof(FoodHomeScreen)} onClick={() => history('/home/foods')}>
             Foods
           </Menu.Item>
           <SubMenu key="Tables" icon={<BarChartOutlined />} title="Tables">
@@ -333,7 +333,6 @@ export const Navigation = (props: { content: React.ReactNode; selected: string }
           action={selectedEventAction}
         />
       </Content>
-      <Footer style={{ textAlign: 'center' }}>Zoo Erp ©2022 Created by Dimitur Kazakov</Footer>
     </Layout>
   );
 };

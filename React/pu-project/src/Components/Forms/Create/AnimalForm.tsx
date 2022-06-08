@@ -58,14 +58,14 @@ export const AnimalForm = (props: {
       <Form.Item
         name={nameof<CreateAnimalDto>((x) => x.name)}
         label="Name"
-        rules={[{ required: true }]}
+        rules={[{ required: true, max: 20 }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
         name={nameof<CreateAnimalDto>((x) => x.imageUrl)}
         label="Image Url"
-        rules={[{ required: true }]}
+        rules={[{ required: true, max: 500 }]}
       >
         <Input
           onChange={() =>
@@ -87,14 +87,14 @@ export const AnimalForm = (props: {
         label="Age"
         rules={[{ required: true }]}
       >
-        <InputNumber min={1} max={200} defaultValue={3} />;
+        <InputNumber min={1} max={200} defaultValue={3} />
       </Form.Item>
       <Form.Item
         name={nameof<CreateAnimalDto>((x) => x.price)}
         label="Price"
         rules={[{ required: true }]}
       >
-        <InputNumber min={1.5} max={1_000_000} defaultValue={100.5} />;
+        <InputNumber min={1.5} max={1_000_000} defaultValue={100.5} />
       </Form.Item>
       <Form.Item
         name={nameof<CreateAnimalDto>((x) => x.gender)}
@@ -199,7 +199,7 @@ export const AnimalForm = (props: {
       <Form.Item
         name={nameof<CreateAnimalDto>((x) => x.description)}
         label="Description"
-        rules={[{ required: true }]}
+        rules={[{ required: true, max: 500 }]}
       >
         <TextArea rows={5} maxLength={500} />
       </Form.Item>

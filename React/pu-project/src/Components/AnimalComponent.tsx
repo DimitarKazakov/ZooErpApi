@@ -1,28 +1,72 @@
 import { EllipsisOutlined } from '@ant-design/icons';
-import { Card, Col, Row } from 'antd';
+import { Card, Col, Pagination, Row, Input, DatePicker, Button } from 'antd';
 import Meta from 'antd/lib/card/Meta';
+import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { AnimalInfoScreen } from '../Screens/Info/AnimalInfoScreen';
+import { FilterDto } from '../Types/FilterDto';
 import { AnimalDto } from '../Types/Get/AnimalDto';
 import { getAllAnimals } from '../Utils/Controllers/AnimalController';
 
+const { Search } = Input;
+
 export const AnimalComponent = () => {
   const [animals, setAnimals] = useState<AnimalDto[]>();
+  const [filter, setFilter] = useState<FilterDto>({});
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedAnimal, setSelectedAnimal] = useState(0);
   useEffect(() => {
-    getAllAnimals().then((data) => setAnimals(data));
-  }, []);
+    getAllAnimals(filter).then((data) => setAnimals(data));
+  }, [filter.createdOnDate, filter.description, filter.lastModifiedOnDate]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      getAllAnimals().then((data) => setAnimals(data));
-    }, 5000);
+      getAllAnimals(filter).then((data) => setAnimals(data));
+    }, 2500);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [filter.createdOnDate, filter.description, filter.lastModifiedOnDate]);
+
+  const onSearch = (value: string) => {
+    setFilter(Object.assign(filter, { description: value }));
+  };
+
+  const onChangeCreated = (date: any, dateString: string) => {
+    setFilter(Object.assign(filter, { createdOnDate: moment(dateString).format('d/MM/yyyy') }));
+  };
+
+  const onChangeModified = (date: any, dateString: string) => {
+    setFilter(
+      Object.assign(filter, { lastModifiedOnDate: moment(dateString).format('d/MM/yyyy') })
+    );
+  };
+
   return (
     <>
+      <Row>
+        <Col span={6}>
+          <Search placeholder="input search text" onSearch={onSearch} style={{ width: 200 }} />
+        </Col>
+        <Col span={6}>
+          <DatePicker
+            format={'d/MM/yyyy'}
+            placeholder="created on date"
+            onChange={onChangeCreated}
+          />
+        </Col>
+        <Col span={6}>
+          <DatePicker
+            format={'d/MM/yyyy'}
+            placeholder="last modified on date"
+            onChange={onChangeModified}
+          />
+        </Col>
+        <Col span={6}>
+          <Button onClick={() => setFilter({})} type="primary">
+            Clear Filters
+          </Button>
+        </Col>
+      </Row>
       <Row gutter={16}>
         {animals?.map((x) => {
           return (

@@ -9,6 +9,8 @@ const axiosClient = getAxiosClient();
 
 export const getAllAnimals = async (filter?: FilterDto): Promise<AnimalDto[]> => {
   const query = qs.stringify(filter);
+  console.log(query);
+  console.log(filter);
   const response = await axiosClient.get(`Animal/GetAll?${query}`);
   return response.data as AnimalDto[];
 };

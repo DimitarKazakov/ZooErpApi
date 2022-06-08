@@ -3,6 +3,6 @@ import { nameof } from 'ts-simple-nameof';
 import { CageComponent } from '../Components/CageComponent';
 import { Navigation } from '../Components/Navigation';
 
-export const CageScreen = () => {
-  return <Navigation content={<CageComponent />} selected={nameof(CageScreen)} />;
+export const CageHomeScreen = () => {
+  return <Navigation content={<CageComponent />} selected={nameof(CageHomeScreen)} />;
 };

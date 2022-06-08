@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace ZooErp.Models
 {
 	public class CreateEventDto
@@ -7,6 +9,7 @@ namespace ZooErp.Models
 
 		public int Type { get; set; }
 
+		[StringLength(500)]
 		public string Description { get; set; }
 	}
 }

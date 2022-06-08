@@ -122,7 +122,7 @@ export const EventForm = (props: {
       <Form.Item
         name={nameof<CreateEventDto>((x) => x.description)}
         label="Description"
-        rules={[{ required: true }]}
+        rules={[{ required: true, max: 500 }]}
       >
         <TextArea rows={5} maxLength={500} />
       </Form.Item>
