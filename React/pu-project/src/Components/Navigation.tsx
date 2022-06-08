@@ -11,47 +11,30 @@ import { getUserRoles, isAuthenticated, logOut } from '../Utils/authentication';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import { nameof } from 'ts-simple-nameof';
-import { HomeScreen } from '../Screens/HomeScreen';
 import {
-  seedConditionsHelper,
-  seedBodyStylesHelper,
-  seedCarLevelsHelper,
-  seedCarMakesHelper,
-  seedColorsHelper,
-  seedFuelTypesHelper,
-  seedExtrasHelper,
-  seedTunningsHelper,
+  seedAnimalsHelper,
+  seedCagesHelper,
+  seedFoodsHelper,
+  seedEventsHelper,
+  seedAllDataHelper,
+  resetDatabaseHelper,
 } from '../Utils/dataSeeder';
 import { useState } from 'react';
-import { CreateColorScreen } from '../Screens/Create/CreateColorScreen';
-import { CreateFuelTypeScreen } from '../Screens/Create/CreateFuelTypeScreen';
-import { CreateConditionScreen } from '../Screens/Create/CreateConditionScreen';
-import { CreateCarLevelScreen } from '../Screens/Create/CreateCarLevelScreen';
-import { CreateCarMakeScreen } from '../Screens/Create/CreateCarMakeScreen';
-import { CreateBodyStyleScreen } from '../Screens/Create/CreateBodyStyleScreen';
-import { UpdateColorScreen } from '../Screens/Update/UpdateColorScreen';
-import { UpdateBodyStyleScreen } from '../Screens/Update/UpdateVodyStyleScreen';
-import { UpdateConditionScreen } from '../Screens/Update/UpdateConditionScreen';
-import { UpdateFuelTypeScreen } from '../Screens/Update/UpdateFuelTypeScreen';
-import { UpdateCarMakeScreen } from '../Screens/Update/UpdateCarMakeScreen';
-import { SelectBodyStyleScreen } from '../Screens/Select/SelectBodyStyleScreen';
-import { SelectCarMakeScreen } from '../Screens/Select/SelectCarMakeScreen';
-import { SelectCarLevelScreen } from '../Screens/Select/SelectCarLevelScreen';
-import { SelectConditionScreen } from '../Screens/Select/SelectConditionScreen';
-import { SelectColorScreen } from '../Screens/Select/SelectColorScreen';
-import { SelectFuelTypeScreen } from '../Screens/Select/SelectFuelTypeScreen';
-import { UpdateCarLevelScreen } from '../Screens/Update/UpdateCarLevelScreen';
-import { CreateExtraScreen } from '../Screens/Create/CreateExtraScreen';
-import { CreateTunningScreen } from '../Screens/View/CreateTunningScreen';
-import { UpdateExtraScreen } from '../Screens/Update/UpdateExtraScreen';
-import { UpdateTunningScreen } from '../Screens/Update/UpdateTunningScreen';
-import { SelectExtraScreen } from '../Screens/Select/SelectExtraScreen';
-import { SelectTunningScreen } from '../Screens/Select/SelectTunningScreen';
-import { CreateCarScreen } from '../Screens/Create/CreateCarScreen';
-import { UpdateCarScreen } from '../Screens/Update/UpdateCarScreen';
-import { SelectCarScreen } from '../Screens/Select/SelectCarScreen';
-import { UpdateCarExtrasScreen } from '../Screens/Update/UpdateCarExtrasScreen';
-import { UpdateCarTunningsScreen } from '../Screens/Update/UpdateCarTunningsScreen';
+import { AnimalScreen } from '../Screens/AnimalScreen';
+import { CageScreen } from '../Screens/CageScreen';
+import { FoodScreen } from '../Screens/FoodScreen';
+import { CreateAnimalScreen } from '../Screens/Create/CreateAnimalScreen';
+import { CreateCageScreen } from '../Screens/Create/CreateCageScreen';
+import { CreateFoodScreen } from '../Screens/Create/CreateFoodScreen';
+import { CreateEventScreen } from '../Screens/Create/CreateEventScreen';
+import { UpdateAnimalScreen } from '../Screens/Update/UpdateAnimalScreen';
+import { UpdateCageScreen } from '../Screens/Update/UpdateCageScreen';
+import { UpdateFoodScreen } from '../Screens/Update/UpdateFoodScreen';
+import { UpdateEventScreen } from '../Screens/Update/UpdateEventScreen';
+import { SelectAnimalScreen } from '../Screens/Select/SelectAnimalScreen';
+import { SelectCageScreen } from '../Screens/Select/SelectCageScreen';
+import { SelectFoodScreen } from '../Screens/Select/SelectFoodScreen';
+import { SelectEventScreen } from '../Screens/Select/SelectEventScreen';
 
 const { SubMenu } = Menu;
 const { Header, Content, Footer } = Layout;
@@ -67,429 +50,207 @@ export const Navigation = (props: { content: React.ReactNode; selected: string }
   const { content, selected } = props;
   const roles = getUserRoles();
 
-  const [isCreateColorVisible, setIsCreateColorVisible] = useState(false);
-  const [isCreateCarMakeVisible, setIsCreateCarMakeVisible] = useState(false);
-  const [isCreateCarLevelVisible, setIsCreateCarLevelVisible] = useState(false);
-  const [isCreateConditionVisible, setIsCreateConditionVisible] = useState(false);
-  const [isCreateFuelTypeVisible, setIsCreateFuelTypeVisible] = useState(false);
-  const [isCreateBodyStyleVisible, setIsCreateBodyStyleVisible] = useState(false);
-  const [isCreateExtraVisible, setIsCreateExtraVisible] = useState(false);
-  const [isCreateTunningVisible, setIsCreateTunningVisible] = useState(false);
-  const [isCreateCarVisible, setIsCreateCarVisible] = useState(false);
+  const [isCreateAnimalVisible, setIsCreateAnimalVisible] = useState(false);
+  const [isCreateCageVisible, setIsCreateCageVisible] = useState(false);
+  const [isCreateFoodVisible, setIsCreateFoodVisible] = useState(false);
+  const [isCreateEventVisible, setIsCreateEventVisible] = useState(false);
 
-  const [isUpdateColorVisible, setIsUpdateColorVisible] = useState(false);
-  const [isUpdateCarMakeVisible, setIsUpdateCarMakeVisible] = useState(false);
-  const [isUpdateCarLevelVisible, setIsUpdateCarLevelVisible] = useState(false);
-  const [isUpdateConditionVisible, setIsUpdateConditionVisible] = useState(false);
-  const [isUpdateFuelTypeVisible, setIsUpdateFuelTypeVisible] = useState(false);
-  const [isUpdateBodyStyleVisible, setIsUpdateBodyStyleVisible] = useState(false);
-  const [isUpdateExtraVisible, setIsUpdateExtraVisible] = useState(false);
-  const [isUpdateTunningVisible, setIsUpdateTunningVisible] = useState(false);
-  const [isUpdateCarVisible, setIsUpdateCarVisible] = useState(false);
-  const [isUpdateCarExtrasVisible, setIsUpdateCarExtrasVisible] = useState(false);
-  const [isUpdateCarTunningsVisible, setIsUpdateCarTunningsVisible] = useState(false);
+  const [isUpdateAnimalVisible, setIsUpdateAnimalVisible] = useState(false);
+  const [isUpdateCageVisible, setIsUpdateCageVisible] = useState(false);
+  const [isUpdateFoodVisible, setIsUpdateFoodVisible] = useState(false);
+  const [isUpdateEventVisible, setIsUpdateEventVisible] = useState(false);
 
-  const [isSelectColorVisible, setIsSelectColorVisible] = useState(false);
-  const [isSelectCarMakeVisible, setIsSelectCarMakeVisible] = useState(false);
-  const [isSelectCarLevelVisible, setIsSelectCarLevelVisible] = useState(false);
-  const [isSelectConditionVisible, setIsSelectConditionVisible] = useState(false);
-  const [isSelectFuelTypeVisible, setIsSelectFuelTypeVisible] = useState(false);
-  const [isSelectBodyStyleVisible, setIsSelectBodyStyleVisible] = useState(false);
-  const [isSelectExtraVisible, setIsSelectExtraVisible] = useState(false);
-  const [isSelectTunningVisible, setIsSelectTunningVisible] = useState(false);
-  const [isSelectCarVisible, setIsSelectCarVisible] = useState(false);
+  const [isSelectAnimalVisible, setIsSelectAnimalVisible] = useState(false);
+  const [isSelectCageVisible, setIsSelectCageVisible] = useState(false);
+  const [isSelectFoodVisible, setIsSelectFoodVisible] = useState(false);
+  const [isSelectEventVisible, setIsSelectEventVisible] = useState(false);
 
-  const [colorId, setColorId] = useState<number>(0);
-  const [carMakeId, setCarMakeId] = useState<number>(0);
-  const [carLevelId, setCarLevelId] = useState<number>(0);
-  const [conditionId, setConditionId] = useState<number>(0);
-  const [fuelTypeId, setFuelTypeId] = useState<number>(0);
-  const [bodyStyleId, setBodyStyleId] = useState<number>(0);
-  const [extraId, setExtraId] = useState<number>(0);
-  const [tunningId, setTunningId] = useState<number>(0);
-  const [carId, setCarId] = useState<number>(0);
+  const [animalId, setAnimalId] = useState<number>(0);
+  const [cageId, setCageId] = useState<number>(0);
+  const [foodId, setFoodId] = useState<number>(0);
+  const [eventId, setEventId] = useState<number>(0);
 
-  const [selectedColorAction, setSelectedColorAction] = useState<string>('None');
-  const [selectedBodyStyleAction, setSelectedBodyStyleAction] = useState<string>('None');
-  const [selectedCarMakeAction, setSelectedCarMakeAction] = useState<string>('None');
-  const [selectedCarLevelAction, setSelectedCarLevelAction] = useState<string>('None');
-  const [selectedFuelTypeAction, setSelectedFuelTypeAction] = useState<string>('None');
-  const [selectedConditionAction, setSelectedConditionAction] = useState<string>('None');
-  const [selectedExtraAction, setSelectedExtraAction] = useState<string>('None');
-  const [selectedTunningAction, setSelectedTunningAction] = useState<string>('None');
-  const [selectedCarAction, setSelectedCarAction] = useState<string>('None');
+  const [selectedAnimalAction, setSelectedAnimalAction] = useState<string>('None');
+  const [selectedCageAction, setSelectedCageAction] = useState<string>('None');
+  const [selectedFoodAction, setSelectedFoodAction] = useState<string>('None');
+  const [selectedEventAction, setSelectedEventAction] = useState<string>('None');
 
   useEffect(() => {
-    if (selectedColorAction === 'Update') {
-      setIsUpdateColorVisible(true);
+    if (selectedAnimalAction === 'Update') {
+      setIsUpdateAnimalVisible(true);
     }
 
-    setIsSelectColorVisible(false);
-  }, [colorId]);
+    setIsSelectAnimalVisible(false);
+  }, [animalId]);
 
   useEffect(() => {
-    if (selectedCarMakeAction === 'Update') {
-      setIsUpdateCarMakeVisible(true);
+    if (selectedCageAction === 'Update') {
+      setIsUpdateCageVisible(true);
     }
 
-    setIsSelectCarMakeVisible(false);
-  }, [carMakeId]);
+    setIsSelectCageVisible(false);
+  }, [cageId]);
 
   useEffect(() => {
-    if (selectedCarLevelAction === 'Update') {
-      setIsUpdateCarLevelVisible(true);
+    if (selectedFoodAction === 'Update') {
+      setIsUpdateFoodVisible(true);
     }
 
-    setIsSelectCarLevelVisible(false);
-  }, [carLevelId]);
+    setIsSelectFoodVisible(false);
+  }, [foodId]);
 
   useEffect(() => {
-    if (selectedConditionAction === 'Update') {
-      setIsUpdateConditionVisible(true);
+    if (selectedEventAction === 'Update') {
+      setIsUpdateEventVisible(true);
     }
 
-    setIsSelectConditionVisible(false);
-  }, [conditionId]);
-
-  useEffect(() => {
-    if (selectedFuelTypeAction === 'Update') {
-      setIsUpdateFuelTypeVisible(true);
-    }
-    setIsSelectFuelTypeVisible(false);
-  }, [fuelTypeId]);
-
-  useEffect(() => {
-    if (selectedBodyStyleAction === 'Update') {
-      setIsUpdateBodyStyleVisible(true);
-    }
-    setIsSelectBodyStyleVisible(false);
-  }, [bodyStyleId]);
-
-  useEffect(() => {
-    if (selectedExtraAction === 'Update') {
-      setIsUpdateExtraVisible(true);
-    }
-    setIsSelectExtraVisible(false);
-  }, [extraId]);
-
-  useEffect(() => {
-    if (selectedTunningAction === 'Update') {
-      setIsUpdateTunningVisible(true);
-    }
-    setIsSelectTunningVisible(false);
-  }, [tunningId]);
-
-  useEffect(() => {
-    if (selectedCarAction === 'Update') {
-      setIsUpdateCarVisible(true);
-    } else if (selectedCarAction === 'Extras') {
-      setIsUpdateCarExtrasVisible(true);
-    } else if (selectedCarAction === 'Tunnings') {
-      setIsUpdateCarTunningsVisible(true);
-    }
-    setIsSelectCarVisible(false);
-  }, [carId]);
+    setIsSelectEventVisible(false);
+  }, [eventId]);
 
   return (
     <Layout style={{ height: '100vh' }}>
       <Header className="header">
         <div className="logo" />
         <Menu theme="dark" mode="horizontal" selectedKeys={[selected]}>
-          <Menu.Item key={nameof(HomeScreen)} onClick={() => history('/')}>
-            Home
+          <Menu.Item key={nameof(AnimalScreen)} onClick={() => history('/home/animals')}>
+            Animals
+          </Menu.Item>
+          <Menu.Item key={nameof(CageScreen)} onClick={() => history('/home/cages')}>
+            Cages
+          </Menu.Item>
+          <Menu.Item key={nameof(FoodScreen)} onClick={() => history('/home/foods')}>
+            Foods
           </Menu.Item>
           <SubMenu key="Tables" icon={<BarChartOutlined />} title="Tables">
-            <Menu.Item key="table:colors" onClick={() => history('/colors')}>
-              Colors Table
+            <Menu.Item key="table:animals" onClick={() => history('/animals')}>
+              Animals Table
             </Menu.Item>
-            <Menu.Item key="table:carMakes" onClick={() => history('/carMakes')}>
-              Car Makes Table
+            <Menu.Item key="table:cages" onClick={() => history('/cages')}>
+              Cages Table
             </Menu.Item>
-            <Menu.Item key="table:carLevels" onClick={() => history('/carLevels')}>
-              Car Levels Table
+            <Menu.Item key="table:events" onClick={() => history('/events')}>
+              Events Table
             </Menu.Item>
-            <Menu.Item key="table:bodyStyles" onClick={() => history('/bodyStyles')}>
-              Body Styles Table
-            </Menu.Item>
-            <Menu.Item key="table:fuelTypes" onClick={() => history('/fuelTypes')}>
-              Fuel Types Table
-            </Menu.Item>
-            <Menu.Item key="table:conditions" onClick={() => history('/conditions')}>
-              Conditions Table
-            </Menu.Item>
-            <Menu.Item key="table:extras" onClick={() => history('/extras')}>
-              Extras Table
-            </Menu.Item>
-            <Menu.Item key="table:tunnings" onClick={() => history('/tunnings')}>
-              Tunnings Table
-            </Menu.Item>
-            <Menu.Item key="table:cars" onClick={() => history('/cars')}>
-              Cars Table
+            <Menu.Item key="table:foods" onClick={() => history('/foods')}>
+              Foods Table
             </Menu.Item>
           </SubMenu>
           {roles.includes('Administrator') && (
             <>
               <SubMenu key="Seeder" icon={<DatabaseOutlined />} title="Data Seeder">
-                <Menu.Item key="seed:conditions" onClick={async () => await seedConditionsHelper()}>
-                  Seed Conditions
+                <Menu.Item key="seed:animals" onClick={async () => await seedAnimalsHelper()}>
+                  Seed Animals
                 </Menu.Item>
-                <Menu.Item key="seed:carMakes" onClick={async () => await seedCarMakesHelper()}>
-                  Seed Car Makes
+                <Menu.Item key="seed:cages" onClick={async () => await seedCagesHelper()}>
+                  Seed Cages
                 </Menu.Item>
-                <Menu.Item key="seed:carLevels" onClick={async () => await seedCarLevelsHelper()}>
-                  Seed Car Levels
+                <Menu.Item key="seed:foods" onClick={async () => await seedFoodsHelper()}>
+                  Seed Foods
                 </Menu.Item>
-                <Menu.Item key="seed:bodyStyles" onClick={async () => await seedBodyStylesHelper()}>
-                  Seed Body Styles
+                <Menu.Item key="seed:events" onClick={async () => await seedEventsHelper()}>
+                  Seed Events
                 </Menu.Item>
-                <Menu.Item key="seed:colors" onClick={async () => await seedColorsHelper()}>
-                  Seed Colors
+                <Menu.Item key="seed:all" onClick={async () => await seedAllDataHelper()}>
+                  Seed All Data
                 </Menu.Item>
-                <Menu.Item key="seed:fuelTypes" onClick={async () => await seedFuelTypesHelper()}>
-                  Seed Fuel Types
-                </Menu.Item>
-                <Menu.Item key="seed:extras" onClick={async () => await seedExtrasHelper()}>
-                  Seed Extras
-                </Menu.Item>
-                <Menu.Item key="seed:tunnings" onClick={async () => await seedTunningsHelper()}>
-                  Seed Tunnings
+                <Menu.Item key="seed:reset" onClick={async () => await resetDatabaseHelper()}>
+                  Reset Database
                 </Menu.Item>
               </SubMenu>
               <SubMenu key="Forms:Create" icon={<DiffOutlined />} title="Create">
                 <Menu.Item
-                  key="form:createColor"
-                  onClick={async () => setIsCreateColorVisible(true)}
+                  key="form:createAnimal"
+                  onClick={async () => setIsCreateAnimalVisible(true)}
                 >
-                  Create Color
+                  Create Animal
+                </Menu.Item>
+                <Menu.Item key="form:createCage" onClick={async () => setIsCreateCageVisible(true)}>
+                  Create Cage
+                </Menu.Item>
+                <Menu.Item key="form:createFood" onClick={async () => setIsCreateFoodVisible(true)}>
+                  Create Food
                 </Menu.Item>
                 <Menu.Item
-                  key="form:createFuelType"
-                  onClick={async () => setIsCreateFuelTypeVisible(true)}
+                  key="form:createEvent"
+                  onClick={async () => setIsCreateEventVisible(true)}
                 >
-                  Create Fuel Type
-                </Menu.Item>
-                <Menu.Item
-                  key="form:createCondition"
-                  onClick={async () => setIsCreateConditionVisible(true)}
-                >
-                  Create Condition
-                </Menu.Item>
-                <Menu.Item
-                  key="form:createCarLevel"
-                  onClick={async () => setIsCreateCarLevelVisible(true)}
-                >
-                  Create Car Level
-                </Menu.Item>
-                <Menu.Item
-                  key="form:createCarMake"
-                  onClick={async () => setIsCreateCarMakeVisible(true)}
-                >
-                  Create Car Make
-                </Menu.Item>
-                <Menu.Item
-                  key="form:createBodyStyle"
-                  onClick={async () => setIsCreateBodyStyleVisible(true)}
-                >
-                  Create Body Style
-                </Menu.Item>
-                <Menu.Item
-                  key="form:createExtra"
-                  onClick={async () => setIsCreateExtraVisible(true)}
-                >
-                  Create Extra
-                </Menu.Item>
-                <Menu.Item
-                  key="form:createTunning"
-                  onClick={async () => setIsCreateTunningVisible(true)}
-                >
-                  Create Tunning
-                </Menu.Item>
-                <Menu.Item key="form:createCar" onClick={async () => setIsCreateCarVisible(true)}>
-                  Create Car
+                  Create Event
                 </Menu.Item>
               </SubMenu>
               <SubMenu key="Forms:Update" icon={<EditOutlined />} title="Update">
                 <Menu.Item
-                  key="form:updateColor"
+                  key="form:updateAnimal"
                   onClick={async () => {
-                    setIsSelectColorVisible(true);
-                    setSelectedColorAction('Update');
+                    setIsSelectAnimalVisible(true);
+                    setSelectedAnimalAction('Update');
                   }}
                 >
-                  Update Color
+                  Update Animal
                 </Menu.Item>
                 <Menu.Item
-                  key="form:updateFuelType"
+                  key="form:updateCage"
                   onClick={async () => {
-                    setIsSelectFuelTypeVisible(true);
-                    setSelectedFuelTypeAction('Update');
+                    setIsSelectCageVisible(true);
+                    setSelectedCageAction('Update');
                   }}
                 >
-                  Update Fuel Type
+                  Update Cage
                 </Menu.Item>
                 <Menu.Item
-                  key="form:updateCondition"
+                  key="form:updateFood"
                   onClick={async () => {
-                    setIsSelectConditionVisible(true);
-                    setSelectedConditionAction('Update');
+                    setIsSelectFoodVisible(true);
+                    setSelectedFoodAction('Update');
                   }}
                 >
-                  Update Condition
+                  Update Food
                 </Menu.Item>
                 <Menu.Item
-                  key="form:updateCarLevel"
+                  key="form:updateEvent"
                   onClick={async () => {
-                    setIsSelectCarLevelVisible(true);
-                    setSelectedCarLevelAction('Update');
+                    setIsSelectEventVisible(true);
+                    setSelectedEventAction('Update');
                   }}
                 >
-                  Update Car Level
-                </Menu.Item>
-                <Menu.Item
-                  key="form:updateCarMake"
-                  onClick={async () => {
-                    setIsSelectCarMakeVisible(true);
-                    setSelectedCarMakeAction('Update');
-                  }}
-                >
-                  Update Car Make
-                </Menu.Item>
-                <Menu.Item
-                  key="form:updateBodyStyle"
-                  onClick={async () => {
-                    setIsSelectBodyStyleVisible(true);
-                    setSelectedBodyStyleAction('Update');
-                  }}
-                >
-                  Update Body Style
-                </Menu.Item>
-                <Menu.Item
-                  key="form:updateExtra"
-                  onClick={async () => {
-                    setIsSelectExtraVisible(true);
-                    setSelectedExtraAction('Update');
-                  }}
-                >
-                  Update Extra
-                </Menu.Item>
-                <Menu.Item
-                  key="form:updateTunning"
-                  onClick={async () => {
-                    setIsSelectTunningVisible(true);
-                    setSelectedTunningAction('Update');
-                  }}
-                >
-                  Update Tunning
-                </Menu.Item>
-                <Menu.Item
-                  key="form:updateCar"
-                  onClick={async () => {
-                    setIsSelectCarVisible(true);
-                    setSelectedCarAction('Update');
-                  }}
-                >
-                  Update Car
-                </Menu.Item>
-                <Menu.Item
-                  key="form:updateCarExtras"
-                  onClick={async () => {
-                    setIsSelectCarVisible(true);
-                    setSelectedCarAction('Extras');
-                  }}
-                >
-                  Update Car Extras
-                </Menu.Item>
-                <Menu.Item
-                  key="form:updateCarTunnings"
-                  onClick={async () => {
-                    setIsSelectCarVisible(true);
-                    setSelectedCarAction('Tunnings');
-                  }}
-                >
-                  Update Car Tunnings
+                  Update Event
                 </Menu.Item>
               </SubMenu>
               <SubMenu key="Forms:Delete" icon={<DeleteOutlined />} title="Delete">
                 <Menu.Item
-                  key="form:deleteColor"
+                  key="form:deleteAnimal"
                   onClick={async () => {
-                    setIsSelectColorVisible(true);
-                    setSelectedColorAction('Delete');
+                    setIsSelectAnimalVisible(true);
+                    setSelectedAnimalAction('Delete');
                   }}
                 >
-                  Delete Color
+                  Delete Animal
                 </Menu.Item>
                 <Menu.Item
-                  key="form:deleteFuelType"
+                  key="form:deleteCage"
                   onClick={async () => {
-                    setIsSelectFuelTypeVisible(true);
-                    setSelectedFuelTypeAction('Delete');
+                    setIsSelectCageVisible(true);
+                    setSelectedCageAction('Delete');
                   }}
                 >
-                  Delete Fuel Type
+                  Delete Cage
                 </Menu.Item>
                 <Menu.Item
-                  key="form:deleteCondition"
+                  key="form:deleteFood"
                   onClick={async () => {
-                    setIsSelectConditionVisible(true);
-                    setSelectedConditionAction('Delete');
+                    setIsSelectFoodVisible(true);
+                    setSelectedFoodAction('Delete');
                   }}
                 >
-                  Delete Condition
+                  Delete Food
                 </Menu.Item>
                 <Menu.Item
-                  key="form:deleteCarLevel"
+                  key="form:deleteEvent"
                   onClick={async () => {
-                    setIsSelectCarLevelVisible(true);
-                    setSelectedCarLevelAction('Delete');
+                    setIsSelectEventVisible(true);
+                    setSelectedEventAction('Delete');
                   }}
                 >
-                  Delete Car Level
-                </Menu.Item>
-                <Menu.Item
-                  key="form:deleteCarMake"
-                  onClick={async () => {
-                    setIsSelectCarMakeVisible(true);
-                    setSelectedCarMakeAction('Delete');
-                  }}
-                >
-                  Delete Car Make
-                </Menu.Item>
-                <Menu.Item
-                  key="form:deleteBodyStyle"
-                  onClick={async () => {
-                    setIsSelectBodyStyleVisible(true);
-                    setSelectedBodyStyleAction('Delete');
-                  }}
-                >
-                  Delete Body Style
-                </Menu.Item>
-                <Menu.Item
-                  key="form:deleteExtra"
-                  onClick={async () => {
-                    setIsSelectExtraVisible(true);
-                    setSelectedExtraAction('Delete');
-                  }}
-                >
-                  Delete Extra
-                </Menu.Item>
-                <Menu.Item
-                  key="form:deleteTunning"
-                  onClick={async () => {
-                    setIsSelectTunningVisible(true);
-                    setSelectedTunningAction('Delete');
-                  }}
-                >
-                  Delete Tunning
-                </Menu.Item>
-                <Menu.Item
-                  key="form:deleteCar"
-                  onClick={async () => {
-                    setIsSelectCarVisible(true);
-                    setSelectedCarAction('Delete');
-                  }}
-                >
-                  Delete Car
+                  Delete Event
                 </Menu.Item>
               </SubMenu>
             </>
@@ -503,169 +264,73 @@ export const Navigation = (props: { content: React.ReactNode; selected: string }
         <Layout className="site-layout-background" style={{ padding: '24px 0' }}>
           {content}
         </Layout>
-        <CreateColorScreen
-          visible={isCreateColorVisible}
-          setIsModalVisible={setIsCreateColorVisible}
+        <CreateAnimalScreen
+          visible={isCreateAnimalVisible}
+          setIsModalVisible={setIsCreateAnimalVisible}
         />
-        <CreateFuelTypeScreen
-          visible={isCreateFuelTypeVisible}
-          setIsModalVisible={setIsCreateFuelTypeVisible}
+        <CreateCageScreen
+          visible={isCreateCageVisible}
+          setIsModalVisible={setIsCreateCageVisible}
         />
-        <CreateConditionScreen
-          visible={isCreateConditionVisible}
-          setIsModalVisible={setIsCreateConditionVisible}
+        <CreateFoodScreen
+          visible={isCreateFoodVisible}
+          setIsModalVisible={setIsCreateFoodVisible}
         />
-        <CreateCarLevelScreen
-          visible={isCreateCarLevelVisible}
-          setIsModalVisible={setIsCreateCarLevelVisible}
+        <CreateEventScreen
+          visible={isCreateEventVisible}
+          setIsModalVisible={setIsCreateEventVisible}
         />
-        <CreateCarMakeScreen
-          visible={isCreateCarMakeVisible}
-          setIsModalVisible={setIsCreateCarMakeVisible}
-        />
-        <CreateBodyStyleScreen
-          visible={isCreateBodyStyleVisible}
-          setIsModalVisible={setIsCreateBodyStyleVisible}
-        />
-        <CreateExtraScreen
-          visible={isCreateExtraVisible}
-          setIsModalVisible={setIsCreateExtraVisible}
-        />
-        <CreateTunningScreen
-          visible={isCreateTunningVisible}
-          setIsModalVisible={setIsCreateTunningVisible}
-        />
-        <CreateCarScreen visible={isCreateCarVisible} setIsModalVisible={setIsCreateCarVisible} />
-        {colorId !== 0 && (
-          <UpdateColorScreen
-            visible={isUpdateColorVisible}
-            setIsModalVisible={setIsUpdateColorVisible}
-            id={colorId}
+        {animalId !== 0 && (
+          <UpdateAnimalScreen
+            visible={isUpdateAnimalVisible}
+            setIsModalVisible={setIsUpdateAnimalVisible}
+            id={animalId}
           />
         )}
-        {bodyStyleId !== 0 && (
-          <UpdateBodyStyleScreen
-            visible={isUpdateBodyStyleVisible}
-            setIsModalVisible={setIsUpdateBodyStyleVisible}
-            id={bodyStyleId}
+        {cageId !== 0 && (
+          <UpdateCageScreen
+            visible={isUpdateCageVisible}
+            setIsModalVisible={setIsUpdateCageVisible}
+            id={cageId}
           />
         )}
-        {conditionId !== 0 && (
-          <UpdateConditionScreen
-            visible={isUpdateConditionVisible}
-            setIsModalVisible={setIsUpdateConditionVisible}
-            id={conditionId}
+        {foodId !== 0 && (
+          <UpdateFoodScreen
+            visible={isUpdateFoodVisible}
+            setIsModalVisible={setIsUpdateFoodVisible}
+            id={foodId}
           />
         )}
-        {fuelTypeId !== 0 && (
-          <UpdateFuelTypeScreen
-            visible={isUpdateFuelTypeVisible}
-            setIsModalVisible={setIsUpdateFuelTypeVisible}
-            id={fuelTypeId}
+        {eventId !== 0 && (
+          <UpdateEventScreen
+            visible={isUpdateEventVisible}
+            setIsModalVisible={setIsUpdateEventVisible}
+            id={eventId}
           />
         )}
-        {carMakeId !== 0 && (
-          <UpdateCarMakeScreen
-            visible={isUpdateCarMakeVisible}
-            setIsModalVisible={setIsUpdateCarMakeVisible}
-            id={carMakeId}
-          />
-        )}
-        {carLevelId !== 0 && (
-          <UpdateCarLevelScreen
-            visible={isUpdateCarLevelVisible}
-            setIsModalVisible={setIsUpdateCarLevelVisible}
-            id={carLevelId}
-          />
-        )}
-        {extraId !== 0 && (
-          <UpdateExtraScreen
-            visible={isUpdateExtraVisible}
-            setIsModalVisible={setIsUpdateExtraVisible}
-            id={extraId}
-          />
-        )}
-        {tunningId !== 0 && (
-          <UpdateTunningScreen
-            visible={isUpdateTunningVisible}
-            setIsModalVisible={setIsUpdateTunningVisible}
-            id={tunningId}
-          />
-        )}
-        {carId !== 0 && (
-          <UpdateCarScreen
-            visible={isUpdateCarVisible}
-            setIsModalVisible={setIsUpdateCarVisible}
-            id={carId}
-          />
-        )}
-        {carId !== 0 && (
-          <UpdateCarExtrasScreen
-            visible={isUpdateCarExtrasVisible}
-            setIsModalVisible={setIsUpdateCarExtrasVisible}
-            id={carId}
-          />
-        )}
-        {carId !== 0 && (
-          <UpdateCarTunningsScreen
-            visible={isUpdateCarTunningsVisible}
-            setIsModalVisible={setIsUpdateCarTunningsVisible}
-            id={carId}
-          />
-        )}
-        <SelectBodyStyleScreen
-          visible={isSelectBodyStyleVisible}
-          setIsModalVisible={setIsSelectBodyStyleVisible}
-          setId={setBodyStyleId}
-          action={selectedBodyStyleAction}
+        <SelectAnimalScreen
+          visible={isSelectAnimalVisible}
+          setIsModalVisible={setIsSelectAnimalVisible}
+          setId={setAnimalId}
+          action={selectedAnimalAction}
         />
-        <SelectCarMakeScreen
-          visible={isSelectCarMakeVisible}
-          setIsModalVisible={setIsSelectCarMakeVisible}
-          setId={setCarMakeId}
-          action={selectedCarMakeAction}
+        <SelectCageScreen
+          visible={isSelectCageVisible}
+          setIsModalVisible={setIsSelectCageVisible}
+          setId={setCageId}
+          action={selectedCageAction}
         />
-        <SelectCarLevelScreen
-          visible={isSelectCarLevelVisible}
-          setIsModalVisible={setIsSelectCarLevelVisible}
-          setId={setCarLevelId}
-          action={selectedCarLevelAction}
+        <SelectFoodScreen
+          visible={isSelectFoodVisible}
+          setIsModalVisible={setIsSelectFoodVisible}
+          setId={setFoodId}
+          action={selectedFoodAction}
         />
-        <SelectConditionScreen
-          visible={isSelectConditionVisible}
-          setIsModalVisible={setIsSelectConditionVisible}
-          setId={setConditionId}
-          action={selectedConditionAction}
-        />
-        <SelectColorScreen
-          visible={isSelectColorVisible}
-          setIsModalVisible={setIsSelectColorVisible}
-          setId={setColorId}
-          action={selectedColorAction}
-        />
-        <SelectFuelTypeScreen
-          visible={isSelectFuelTypeVisible}
-          setIsModalVisible={setIsSelectFuelTypeVisible}
-          setId={setFuelTypeId}
-          action={selectedFuelTypeAction}
-        />
-        <SelectExtraScreen
-          visible={isSelectExtraVisible}
-          setIsModalVisible={setIsSelectExtraVisible}
-          setId={setExtraId}
-          action={selectedExtraAction}
-        />
-        <SelectTunningScreen
-          visible={isSelectTunningVisible}
-          setIsModalVisible={setIsSelectTunningVisible}
-          setId={setTunningId}
-          action={selectedTunningAction}
-        />
-        <SelectCarScreen
-          visible={isSelectCarVisible}
-          setIsModalVisible={setIsSelectCarVisible}
-          setId={setCarId}
-          action={selectedCarAction}
+        <SelectEventScreen
+          visible={isSelectEventVisible}
+          setIsModalVisible={setIsSelectEventVisible}
+          setId={setEventId}
+          action={selectedEventAction}
         />
       </Content>
       <Footer style={{ textAlign: 'center' }}>Zoo Erp ©2022 Created by Dimitur Kazakov</Footer>
