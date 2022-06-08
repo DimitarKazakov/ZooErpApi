@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Input, Button, message, Image, Row, InputNumber } from 'antd';
+import { Form, Input, Button, message, Image, Row, InputNumber, Select } from 'antd';
 import { nameof } from 'ts-simple-nameof';
 import TextArea from 'antd/lib/input/TextArea';
-import { ExtraDto } from '../../../Types/Get/ExtraDto';
-import { getExtraById, updateExtra } from '../../../Utils/Controllers/ExtraController';
-import { CreateExtraDto } from '../../../Types/Post/CreateExtraDto';
+import { getAnimalOptions } from '../../../Utils/Controllers/AnimalController';
+import { addFood } from '../../../Utils/Controllers/FoodController';
+import { AnimalOptionsDto } from '../../../Types/Get/AnimalOptionsDto';
+import { CreateFoodDto } from '../../../Types/Post/CreateFoodDto';
 
 const layout = {
   labelCol: { span: 8 },
@@ -14,38 +15,28 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-export const UpdateExtraForm = (props: {
-  id: number;
+const { Option } = Select;
+
+export const FoodForm = (props: {
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [form] = Form.useForm();
-  const [extra, setExtra] = useState<ExtraDto>();
-  const [imageUrl, setImageUrl] = useState('');
-
-  const { id, setIsModalVisible } = props;
+  const [imageUrl, setImagUrl] = useState('error');
+  const [animalOptions, setAnimalOptions] = useState<AnimalOptionsDto[]>();
 
   useEffect(() => {
-    getExtraById(id).then((data) => {
-      setExtra(data);
-      setImageUrl(data.imageUrl);
-      form.setFieldsValue({
-        name: data.name,
-        brand: data.brand,
-        imageUrl: data.imageUrl,
-        usualPrice: data.usualPrice,
-        description: data.description,
-      });
-    });
-  }, [id]);
+    getAnimalOptions().then((data) => setAnimalOptions(data));
+  }, []);
 
-  const onFinish = async (values: CreateExtraDto) => {
-    const response = await updateExtra(values, id);
+  const { setIsModalVisible } = props;
+  const onFinish = async (values: CreateFoodDto) => {
+    const response = await addFood(values);
     if (response) {
-      message.success(`Succesffuly updated extra ${id}`);
+      message.success(`Succesffuly added new food - ${values.name}`);
       onReset();
       setIsModalVisible(false);
     } else {
-      message.error(`There was an error updating the extra ${id}`);
+      message.error(`There was an error adding the food - ${values.name}`);
     }
   };
 
@@ -57,29 +48,24 @@ export const UpdateExtraForm = (props: {
     <Form
       {...layout}
       form={form}
-      name="Update Extra Form"
+      name="Food Form"
       onFinish={async () => onFinish(form.getFieldsValue())}
     >
       <Form.Item
-        name={nameof<CreateExtraDto>((x) => x.name)}
+        name={nameof<CreateFoodDto>((x) => x.name)}
         label="Name"
         rules={[{ required: true }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        name={nameof<CreateExtraDto>((x) => x.brand)}
-        label="Brand"
-        rules={[{ required: true }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        name={nameof<CreateExtraDto>((x) => x.imageUrl)}
+        name={nameof<CreateFoodDto>((x) => x.imageUrl)}
         label="Image Url"
         rules={[{ required: true }]}
       >
-        <Input onChange={() => setImageUrl(imageUrl)} />
+        <Input
+          onChange={() => setImagUrl(form.getFieldValue(nameof<CreateFoodDto>((x) => x.imageUrl)))}
+        />
       </Form.Item>
       <Row justify="center">
         <Image
@@ -91,22 +77,133 @@ export const UpdateExtraForm = (props: {
       </Row>
       <br />
       <Form.Item
-        name={nameof<CreateExtraDto>((x) => x.usualPrice)}
-        label="Usual Price"
+        name={nameof<CreateFoodDto>((x) => x.colories)}
+        label="Calories"
         rules={[{ required: true }]}
       >
-        <InputNumber min={0} max={10000} defaultValue={100} addonAfter="lv" />
+        <InputNumber min={1.5} max={10_000} defaultValue={100.5} />;
       </Form.Item>
       <Form.Item
-        name={nameof<CreateExtraDto>((x) => x.description)}
+        name={nameof<CreateFoodDto>((x) => x.price)}
+        label="Price"
+        rules={[{ required: true }]}
+      >
+        <InputNumber min={1.5} max={1_000_000} defaultValue={50.5} />;
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateFoodDto>((x) => x.type)}
+        label="Type"
+        rules={[{ required: true }]}
+      >
+        <Select
+          showSearch
+          style={{ width: 200 }}
+          placeholder="Search to Select"
+          optionFilterProp="children"
+        >
+          <Option key={1} value={1}>
+            Fruit
+          </Option>
+          <Option key={2} value={2}>
+            Vegetables
+          </Option>
+          <Option key={3} value={3}>
+            Starchy Food
+          </Option>
+          <Option key={4} value={4}>
+            Dairy Food
+          </Option>
+          <Option key={5} value={5}>
+            Meat
+          </Option>
+          <Option key={6} value={6}>
+            Fish
+          </Option>
+          <Option key={7} value={7}>
+            Insects
+          </Option>
+          <Option key={8} value={8}>
+            Plants
+          </Option>
+          <Option key={9} value={9}>
+            Junk Food
+          </Option>
+          <Option key={10} value={10}>
+            Fatty Food
+          </Option>
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateFoodDto>((x) => x.usageType)}
+        label="Usage"
+        rules={[{ required: true }]}
+      >
+        <Select
+          showSearch
+          style={{ width: 200 }}
+          placeholder="Search to Select"
+          optionFilterProp="children"
+        >
+          <Option key={1} value={1}>
+            Main Food
+          </Option>
+          <Option key={2} value={2}>
+            Breakfast
+          </Option>
+          <Option key={3} value={3}>
+            Dinner
+          </Option>
+          <Option key={4} value={4}>
+            Lunch
+          </Option>
+          <Option key={5} value={5}>
+            Medicine
+          </Option>
+          <Option key={6} value={6}>
+            Diet
+          </Option>
+          <Option key={7} value={7}>
+            Snack
+          </Option>
+          <Option key={8} value={8}>
+            Training
+          </Option>
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateFoodDto>((x) => x.animalIds)}
+        label="Animals"
+        rules={[{ required: true }]}
+      >
+        <Select
+          showSearch
+          style={{ width: 200 }}
+          placeholder="Search to Select"
+          optionFilterProp="children"
+          mode="multiple"
+        >
+          {animalOptions?.map((x) => {
+            return (
+              <Option key={x.id} value={x.id}>
+                {x.name}
+              </Option>
+            );
+          })}
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateFoodDto>((x) => x.description)}
         label="Description"
-        rules={[{ required: false }]}
+        rules={[{ required: true }]}
       >
         <TextArea rows={5} maxLength={500} />
       </Form.Item>
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
-          Update
+          Create
+        </Button>
+        <Button htmlType="button" onClick={onReset}>
+          Reset
         </Button>
       </Form.Item>
     </Form>

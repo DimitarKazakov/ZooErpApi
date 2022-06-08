@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { Form, Input, Button, message, Row, Image } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Form, Input, Button, message, Image, Row, InputNumber, Select } from 'antd';
 import { nameof } from 'ts-simple-nameof';
 import TextArea from 'antd/lib/input/TextArea';
-import { CreateTuningDto } from '../../../Types/Post/CreateTuningDto';
-import { addTuning } from '../../../Utils/Controllers/TuningController';
+import { CageDto } from '../../../Types/Get/CageDto';
+import { getAllCages, updateCage } from '../../../Utils/Controllers/CageController';
+import { CreateCageDto } from '../../../Types/Post/CreateCageDto';
 
 const layout = {
   labelCol: { span: 8 },
@@ -13,21 +14,43 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-export const TunningForm = (props: {
+const { Option } = Select;
+
+export const UpdateCageForm = (props: {
+  id: number;
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [form] = Form.useForm();
-  const [imageUrl, setImagUrl] = useState('error');
+  const [cage, setCage] = useState<CageDto>();
+  const [imageUrl, setImageUrl] = useState('');
 
-  const { setIsModalVisible } = props;
-  const onFinish = async (values: CreateTuningDto) => {
-    const response = await addTuning(values);
+  const { id, setIsModalVisible } = props;
+
+  useEffect(() => {
+    getAllCages({ id: id }).then((data) => {
+      setCage(data[0]);
+      setImageUrl(data[0].imageUrl);
+      form.setFieldsValue({
+        capacity: data[0].capacity,
+        area: data[0].area,
+        name: data[0].name,
+        description: data[0].description,
+        imageUrl: data[0].imageUrl,
+        location: data[0].location,
+        rating: data[0].rating,
+        type: data[0].typeId,
+      });
+    });
+  }, [id]);
+
+  const onFinish = async (values: CreateCageDto) => {
+    const response = await updateCage(values, id);
     if (response) {
-      message.success(`Succesffuly added new tunning - ${values.name}`);
+      message.success(`Succesffuly updated cage ${id}`);
       onReset();
       setIsModalVisible(false);
     } else {
-      message.error(`There was an error adding the tunning - ${values.name}`);
+      message.error(`There was an error updating the cage ${id}`);
     }
   };
 
@@ -39,32 +62,23 @@ export const TunningForm = (props: {
     <Form
       {...layout}
       form={form}
-      name="Tunning Form"
+      name="Update Cage Form"
       onFinish={async () => onFinish(form.getFieldsValue())}
     >
       <Form.Item
-        name={nameof<CreateTuningDto>((x) => x.name)}
-        label="Tunning"
+        name={nameof<CreateCageDto>((x) => x.name)}
+        label="Name"
         rules={[{ required: true }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        name={nameof<CreateTuningDto>((x) => x.brand)}
-        label="Brand"
-        rules={[{ required: true }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        name={nameof<CreateTuningDto>((x) => x.imageUrl)}
+        name={nameof<CreateCageDto>((x) => x.imageUrl)}
         label="Image Url"
         rules={[{ required: true }]}
       >
         <Input
-          onChange={() =>
-            setImagUrl(form.getFieldValue(nameof<CreateTuningDto>((x) => x.imageUrl)))
-          }
+          onChange={() => setImageUrl(form.getFieldValue(nameof<CreateCageDto>((x) => x.imageUrl)))}
         />
       </Form.Item>
       <Row justify="center">
@@ -77,25 +91,86 @@ export const TunningForm = (props: {
       </Row>
       <br />
       <Form.Item
-        name={nameof<CreateTuningDto>((x) => x.function)}
-        label="Function"
+        name={nameof<CreateCageDto>((x) => x.location)}
+        label="Location"
         rules={[{ required: true }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        name={nameof<CreateTuningDto>((x) => x.description)}
+        name={nameof<CreateCageDto>((x) => x.area)}
+        label="Area"
+        rules={[{ required: true }]}
+      >
+        <InputNumber min={1.5} max={5000} defaultValue={100.5} />;
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateCageDto>((x) => x.capacity)}
+        label="Capacity"
+        rules={[{ required: true }]}
+      >
+        <InputNumber min={1} max={200} defaultValue={2} />;
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateCageDto>((x) => x.rating)}
+        label="Rating"
+        rules={[{ required: true }]}
+      >
+        <InputNumber min={1} max={6} defaultValue={3} />;
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateCageDto>((x) => x.type)}
+        label="Type"
+        rules={[{ required: true }]}
+      >
+        <Select
+          showSearch
+          style={{ width: 200 }}
+          placeholder="Search to Select"
+          optionFilterProp="children"
+        >
+          <Option key={1} value={1}>
+            Mammals
+          </Option>
+          <Option key={2} value={2}>
+            Birds
+          </Option>
+          <Option key={3} value={3}>
+            Aquarium
+          </Option>
+          <Option key={4} value={4}>
+            Terarium
+          </Option>
+          <Option key={5} value={5}>
+            Box Cage
+          </Option>
+          <Option key={6} value={6}>
+            Mesh Cage
+          </Option>
+          <Option key={7} value={7}>
+            Steel Cage
+          </Option>
+          <Option key={8} value={8}>
+            Plastic Cage
+          </Option>
+          <Option key={9} value={9}>
+            Open Space
+          </Option>
+          <Option key={10} value={10}>
+            Natural Enclosure
+          </Option>
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateCageDto>((x) => x.description)}
         label="Description"
-        rules={[{ required: false }]}
+        rules={[{ required: true }]}
       >
         <TextArea rows={5} maxLength={500} />
       </Form.Item>
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
-          Create
-        </Button>
-        <Button htmlType="button" onClick={onReset}>
-          Reset
+          Update
         </Button>
       </Form.Item>
     </Form>

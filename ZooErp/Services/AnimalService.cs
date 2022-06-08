@@ -49,6 +49,8 @@ namespace ZooErp.Services
 					ImageUrl = x.ImageUrl,
 					NumberOfFoods = x.AnimalFoods.Count,
 					Price = x.Price,
+					GenderId = (int)x.Gender,
+					KingdomTypeId = (int)x.KingdomType,
 					KingdomType = x.KingdomType.GetEnumDescription(),
 					Name = x.Name,
 					LastModifiedBy = x.LastModifiedBy,

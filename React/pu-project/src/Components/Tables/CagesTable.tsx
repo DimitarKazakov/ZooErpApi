@@ -4,7 +4,7 @@ import { ColumnFilterItem } from 'antd/lib/table/interface';
 import React, { useEffect, useState } from 'react';
 import { nameof } from 'ts-simple-nameof';
 import { CageInfoScreen } from '../../Screens/Info/CageInfoScreen';
-import { UpdateCageScreen } from '../../Screens/Update/UpdateVodyStyleScreen';
+import { UpdateCageScreen } from '../../Screens/Update/UpdateCageScreen';
 import { FilterDto } from '../../Types/FilterDto';
 import { CageDto } from '../../Types/Get/CageDto';
 import { getUserRoles } from '../../Utils/authentication';

@@ -1,8 +1,8 @@
 import React from 'react';
-import { UpdateFuelTypeForm } from '../../Components/Forms/Update/UpdateFuelTypeForm';
+import { UpdateAnimalForm } from '../../Components/Forms/Update/UpdateAnimalForm';
 import { ModalForm } from '../../Components/ModalForm';
 
-export const UpdateFuelTypeScreen = (props: {
+export const UpdateAnimalScreen = (props: {
   visible: boolean;
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   id: number;
@@ -11,9 +11,9 @@ export const UpdateFuelTypeScreen = (props: {
 
   return (
     <ModalForm
-      content={<UpdateFuelTypeForm id={id} setIsModalVisible={setIsModalVisible} />}
+      content={<UpdateAnimalForm id={id} setIsModalVisible={setIsModalVisible} />}
       visible={visible}
-      name="Update Fuel Type"
+      name="Update Animal"
       setIsModalVisible={setIsModalVisible}
     />
   );

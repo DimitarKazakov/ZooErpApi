@@ -44,6 +44,8 @@ namespace ZooErp.Services
 				{
 					Colories = x.Colories,
 					CreatedBy = x.CreatedBy,
+					TypeId = (int)x.Type,
+					UsageTypeId = (int)x.UsageType,
 					Description = x.Description,
 					Id = x.Id,
 					ImageUrl = x.ImageUrl,

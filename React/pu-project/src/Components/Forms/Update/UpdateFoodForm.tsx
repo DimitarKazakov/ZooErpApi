@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Input, Button, message, Image, Row } from 'antd';
+import { Form, Input, Button, message, Image, Row, InputNumber, Select } from 'antd';
 import { nameof } from 'ts-simple-nameof';
 import TextArea from 'antd/lib/input/TextArea';
-import { TuningDto } from '../../../Types/Get/TuningDto';
-import { getTuningById, updateTuning } from '../../../Utils/Controllers/TuningController';
-import { CreateTuningDto } from '../../../Types/Post/CreateTuningDto';
+import { getAnimalOptions } from '../../../Utils/Controllers/AnimalController';
+import { getAllFoods, updateFood } from '../../../Utils/Controllers/FoodController';
+import { FoodDto } from '../../../Types/Get/FoodDto';
+import { AnimalOptionsDto } from '../../../Types/Get/AnimalOptionsDto';
+import { CreateFoodDto } from '../../../Types/Post/CreateFoodDto';
 
 const layout = {
   labelCol: { span: 8 },
@@ -14,38 +16,46 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-export const UpdateTunningForm = (props: {
+const { Option } = Select;
+
+export const UpdateFoodForm = (props: {
   id: number;
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [form] = Form.useForm();
-  const [tunning, setTunning] = useState<TuningDto>();
+  const [food, setFood] = useState<FoodDto>();
   const [imageUrl, setImageUrl] = useState('');
+  const [animalOptions, setAnimalOptions] = useState<AnimalOptionsDto[]>();
 
   const { id, setIsModalVisible } = props;
 
   useEffect(() => {
-    getTuningById(id).then((data) => {
-      setTunning(data);
-      setImageUrl(data.imageUrl);
+    getAnimalOptions().then((data) => setAnimalOptions(data));
+    getAllFoods({ id: id }).then((data) => {
+      setFood(data[0]);
+      setImageUrl(data[0].imageUrl);
+      const animalNames = data[0].animals;
       form.setFieldsValue({
-        name: data.name,
-        brand: data.brand,
-        imageUrl: data.imageUrl,
-        function: data.function,
-        description: data.description,
+        colories: data[0].colories,
+        usageType: data[0].usageTypeId,
+        type: data[0].typeId,
+        name: data[0].name,
+        imageUrl: data[0].imageUrl,
+        description: data[0].description,
+        price: data[0].price,
+        animalIds: animalOptions?.filter((x) => animalNames.includes(x.name)),
       });
     });
   }, [id]);
 
-  const onFinish = async (values: CreateTuningDto) => {
-    const response = await updateTuning(values, id);
+  const onFinish = async (values: CreateFoodDto) => {
+    const response = await updateFood(values, id);
     if (response) {
-      message.success(`Succesffuly updated tunning ${id}`);
+      message.success(`Succesffuly updated food ${id}`);
       onReset();
       setIsModalVisible(false);
     } else {
-      message.error(`There was an error updating the tunning ${id}`);
+      message.error(`There was an error updating the food ${id}`);
     }
   };
 
@@ -57,29 +67,24 @@ export const UpdateTunningForm = (props: {
     <Form
       {...layout}
       form={form}
-      name="Update Tunning Form"
+      name="Update Food Form"
       onFinish={async () => onFinish(form.getFieldsValue())}
     >
       <Form.Item
-        name={nameof<CreateTuningDto>((x) => x.name)}
+        name={nameof<CreateFoodDto>((x) => x.name)}
         label="Name"
         rules={[{ required: true }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        name={nameof<CreateTuningDto>((x) => x.brand)}
-        label="Brand"
-        rules={[{ required: true }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        name={nameof<CreateTuningDto>((x) => x.imageUrl)}
+        name={nameof<CreateFoodDto>((x) => x.imageUrl)}
         label="Image Url"
         rules={[{ required: true }]}
       >
-        <Input onChange={() => setImageUrl(imageUrl)} />
+        <Input
+          onChange={() => setImageUrl(form.getFieldValue(nameof<CreateFoodDto>((x) => x.imageUrl)))}
+        />
       </Form.Item>
       <Row justify="center">
         <Image
@@ -91,16 +96,124 @@ export const UpdateTunningForm = (props: {
       </Row>
       <br />
       <Form.Item
-        name={nameof<CreateTuningDto>((x) => x.function)}
-        label="Function"
+        name={nameof<CreateFoodDto>((x) => x.colories)}
+        label="Calories"
         rules={[{ required: true }]}
       >
-        <Input />
+        <InputNumber min={1.5} max={10_000} defaultValue={100.5} />;
       </Form.Item>
       <Form.Item
-        name={nameof<CreateTuningDto>((x) => x.description)}
+        name={nameof<CreateFoodDto>((x) => x.price)}
+        label="Price"
+        rules={[{ required: true }]}
+      >
+        <InputNumber min={1.5} max={1_000_000} defaultValue={50.5} />;
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateFoodDto>((x) => x.type)}
+        label="Type"
+        rules={[{ required: true }]}
+      >
+        <Select
+          showSearch
+          style={{ width: 200 }}
+          placeholder="Search to Select"
+          optionFilterProp="children"
+        >
+          <Option key={1} value={1}>
+            Fruit
+          </Option>
+          <Option key={2} value={2}>
+            Vegetables
+          </Option>
+          <Option key={3} value={3}>
+            Starchy Food
+          </Option>
+          <Option key={4} value={4}>
+            Dairy Food
+          </Option>
+          <Option key={5} value={5}>
+            Meat
+          </Option>
+          <Option key={6} value={6}>
+            Fish
+          </Option>
+          <Option key={7} value={7}>
+            Insects
+          </Option>
+          <Option key={8} value={8}>
+            Plants
+          </Option>
+          <Option key={9} value={9}>
+            Junk Food
+          </Option>
+          <Option key={10} value={10}>
+            Fatty Food
+          </Option>
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateFoodDto>((x) => x.usageType)}
+        label="Usage"
+        rules={[{ required: true }]}
+      >
+        <Select
+          showSearch
+          style={{ width: 200 }}
+          placeholder="Search to Select"
+          optionFilterProp="children"
+        >
+          <Option key={1} value={1}>
+            Main Food
+          </Option>
+          <Option key={2} value={2}>
+            Breakfast
+          </Option>
+          <Option key={3} value={3}>
+            Dinner
+          </Option>
+          <Option key={4} value={4}>
+            Lunch
+          </Option>
+          <Option key={5} value={5}>
+            Medicine
+          </Option>
+          <Option key={6} value={6}>
+            Diet
+          </Option>
+          <Option key={7} value={7}>
+            Snack
+          </Option>
+          <Option key={8} value={8}>
+            Training
+          </Option>
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateFoodDto>((x) => x.animalIds)}
+        label="Animals"
+        rules={[{ required: true }]}
+      >
+        <Select
+          showSearch
+          style={{ width: 200 }}
+          placeholder="Search to Select"
+          optionFilterProp="children"
+          mode="multiple"
+        >
+          {animalOptions?.map((x) => {
+            return (
+              <Option key={x.id} value={x.id}>
+                {x.name}
+              </Option>
+            );
+          })}
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateFoodDto>((x) => x.description)}
         label="Description"
-        rules={[{ required: false }]}
+        rules={[{ required: true }]}
       >
         <TextArea rows={5} maxLength={500} />
       </Form.Item>

@@ -22,6 +22,8 @@ namespace ZooErp.Models
         public float Rating { get; set; }
 
         public string Type { get; set; }
+
+        public int TypeId { get; set; }
     }
 }
 

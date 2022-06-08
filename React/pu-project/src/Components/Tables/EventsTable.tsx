@@ -4,7 +4,7 @@ import { ColumnFilterItem } from 'antd/lib/table/interface';
 import React, { useEffect, useState } from 'react';
 import { nameof } from 'ts-simple-nameof';
 import { EventInfoScreen } from '../../Screens/Info/EventInfoScreen';
-import { UpdateEventScreen } from '../../Screens/Update/UpdateVodyStyleScreen';
+import { UpdateEventScreen } from '../../Screens/Update/UpdateEventScreen';
 import { FilterDto } from '../../Types/FilterDto';
 import { EventDto } from '../../Types/Get/EventDto';
 import { getUserRoles } from '../../Utils/authentication';

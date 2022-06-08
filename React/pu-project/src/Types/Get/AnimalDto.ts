@@ -15,4 +15,6 @@ export type AnimalDto = {
   cage: string;
   numberOfFoods: number;
   foods: string[];
+  genderId: number;
+  kingdomTypeId: number;
 };

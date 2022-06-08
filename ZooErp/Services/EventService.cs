@@ -48,6 +48,7 @@ namespace ZooErp.Services
 					CreatedBy = x.CreatedBy,
 					Description = x.Description,
 					Id = x.Id,
+					TypeId = (int)x.Type,
 					CreatedOn = x.CreatedOn.ToString("d/MM/yyyy"),
 					LastModifiedOn = x.LastModifiedOn.ToString("d/MM/yyyy")
 				}).ToListAsync();

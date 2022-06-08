@@ -1,8 +1,8 @@
 import React from 'react';
-import { UpdateTunningForm } from '../../Components/Forms/Update/UpdateTunningForm';
+import { UpdateCageForm } from '../../Components/Forms/Update/UpdateCageForm';
 import { ModalForm } from '../../Components/ModalForm';
 
-export const UpdateTunningScreen = (props: {
+export const UpdateCageScreen = (props: {
   visible: boolean;
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
   id: number;
@@ -11,9 +11,9 @@ export const UpdateTunningScreen = (props: {
 
   return (
     <ModalForm
-      content={<UpdateTunningForm id={id} setIsModalVisible={setIsModalVisible} />}
+      content={<UpdateCageForm id={id} setIsModalVisible={setIsModalVisible} />}
       visible={visible}
-      name="Update Tunning"
+      name="Update Cage"
       setIsModalVisible={setIsModalVisible}
     />
   );

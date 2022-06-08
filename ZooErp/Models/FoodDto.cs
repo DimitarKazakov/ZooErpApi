@@ -17,7 +17,11 @@ namespace ZooErp.Models
 
         public string UsageType { get; set; }
 
+        public int UsageTypeId { get; set; }
+
         public string Type { get; set; }
+
+        public int TypeId { get; set; }
 
         public int NumberOfAnimals { get; set; }
 

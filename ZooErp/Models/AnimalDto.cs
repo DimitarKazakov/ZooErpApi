@@ -15,6 +15,10 @@ namespace ZooErp.Models
 
         public string Gender { get; set; }
 
+        public int GenderId { get; set; }
+
+        public int KingdomTypeId { get; set; }
+
         public decimal Price { get; set; }
 
         public int CageId { get; set; }

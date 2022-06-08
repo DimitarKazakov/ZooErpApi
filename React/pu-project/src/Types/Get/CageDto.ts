@@ -14,6 +14,7 @@ export type CageDto = {
   location: string;
   rating: number;
   type: string;
+  typeId: number;
 };
 
 type CageEventDto = {
@@ -26,6 +27,7 @@ type CageEventDto = {
   cage: string;
   type: string;
   description: string;
+  typeId: number;
 };
 
 type CageAnimalDto = {
@@ -45,4 +47,6 @@ type CageAnimalDto = {
   cage: string;
   numberOfFoods: number;
   foods: string[];
+  genderId: number;
+  kingdomTypeId: number;
 };

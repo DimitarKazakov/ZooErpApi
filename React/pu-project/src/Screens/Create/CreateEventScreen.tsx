@@ -1,8 +1,8 @@
 import React from 'react';
-import { CarLevelForm } from '../../Components/Forms/Create/CarLevelForm';
+import { EventForm } from '../../Components/Forms/Create/EventForm';
 import { ModalForm } from '../../Components/ModalForm';
 
-export const CreateCarLevelScreen = (props: {
+export const CreateEventScreen = (props: {
   visible: boolean;
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
@@ -10,9 +10,9 @@ export const CreateCarLevelScreen = (props: {
 
   return (
     <ModalForm
-      content={<CarLevelForm setIsModalVisible={setIsModalVisible} />}
+      content={<EventForm setIsModalVisible={setIsModalVisible} />}
       visible={visible}
-      name="Create Car Level"
+      name="Create Event"
       setIsModalVisible={setIsModalVisible}
     />
   );

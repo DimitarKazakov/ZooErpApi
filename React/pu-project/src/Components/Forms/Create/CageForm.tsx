@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, message, Row, Image, InputNumber } from 'antd';
+import { Form, Input, Button, message, Image, Row, InputNumber, Select } from 'antd';
 import { nameof } from 'ts-simple-nameof';
 import TextArea from 'antd/lib/input/TextArea';
-import { CreateExtraDto } from '../../../Types/Post/CreateExtraDto';
-import { addExtra } from '../../../Utils/Controllers/ExtraController';
+import { CreateCageDto } from '../../../Types/Post/CreateCageDto';
+import { addCage } from '../../../Utils/Controllers/CageController';
 
 const layout = {
   labelCol: { span: 8 },
@@ -13,22 +13,23 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-export const ExtraForm = (props: {
+const { Option } = Select;
+
+export const CageForm = (props: {
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [form] = Form.useForm();
   const [imageUrl, setImagUrl] = useState('error');
 
   const { setIsModalVisible } = props;
-
-  const onFinish = async (values: CreateExtraDto) => {
-    const response = await addExtra(values);
+  const onFinish = async (values: CreateCageDto) => {
+    const response = await addCage(values);
     if (response) {
-      message.success(`Succesffuly added new extra - ${values.name}`);
+      message.success(`Succesffuly added new cage - ${values.name}`);
       onReset();
       setIsModalVisible(false);
     } else {
-      message.error(`There was an error adding the extra - ${values.name}`);
+      message.error(`There was an error adding the cage - ${values.name}`);
     }
   };
 
@@ -40,30 +41,23 @@ export const ExtraForm = (props: {
     <Form
       {...layout}
       form={form}
-      name="Extra Form"
+      name="Cage Form"
       onFinish={async () => onFinish(form.getFieldsValue())}
     >
       <Form.Item
-        name={nameof<CreateExtraDto>((x) => x.name)}
-        label="Extra"
+        name={nameof<CreateCageDto>((x) => x.name)}
+        label="Name"
         rules={[{ required: true }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        name={nameof<CreateExtraDto>((x) => x.brand)}
-        label="Brand"
-        rules={[{ required: true }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        name={nameof<CreateExtraDto>((x) => x.imageUrl)}
+        name={nameof<CreateCageDto>((x) => x.imageUrl)}
         label="Image Url"
         rules={[{ required: true }]}
       >
         <Input
-          onChange={() => setImagUrl(form.getFieldValue(nameof<CreateExtraDto>((x) => x.imageUrl)))}
+          onChange={() => setImagUrl(form.getFieldValue(nameof<CreateCageDto>((x) => x.imageUrl)))}
         />
       </Form.Item>
       <Row justify="center">
@@ -76,16 +70,80 @@ export const ExtraForm = (props: {
       </Row>
       <br />
       <Form.Item
-        name={nameof<CreateExtraDto>((x) => x.usualPrice)}
-        label="Usual Price"
+        name={nameof<CreateCageDto>((x) => x.location)}
+        label="Location"
         rules={[{ required: true }]}
       >
-        <InputNumber min={0} max={10000} defaultValue={100} addonAfter="lv" />
+        <Input />
       </Form.Item>
       <Form.Item
-        name={nameof<CreateExtraDto>((x) => x.description)}
+        name={nameof<CreateCageDto>((x) => x.area)}
+        label="Area"
+        rules={[{ required: true }]}
+      >
+        <InputNumber min={1.5} max={5000} defaultValue={100.5} />;
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateCageDto>((x) => x.capacity)}
+        label="Capacity"
+        rules={[{ required: true }]}
+      >
+        <InputNumber min={1} max={200} defaultValue={2} />;
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateCageDto>((x) => x.rating)}
+        label="Rating"
+        rules={[{ required: true }]}
+      >
+        <InputNumber min={1} max={6} defaultValue={3} />;
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateCageDto>((x) => x.type)}
+        label="Type"
+        rules={[{ required: true }]}
+      >
+        <Select
+          showSearch
+          style={{ width: 200 }}
+          placeholder="Search to Select"
+          optionFilterProp="children"
+        >
+          <Option key={1} value={1}>
+            Mammals
+          </Option>
+          <Option key={2} value={2}>
+            Birds
+          </Option>
+          <Option key={3} value={3}>
+            Aquarium
+          </Option>
+          <Option key={4} value={4}>
+            Terarium
+          </Option>
+          <Option key={5} value={5}>
+            Box Cage
+          </Option>
+          <Option key={6} value={6}>
+            Mesh Cage
+          </Option>
+          <Option key={7} value={7}>
+            Steel Cage
+          </Option>
+          <Option key={8} value={8}>
+            Plastic Cage
+          </Option>
+          <Option key={9} value={9}>
+            Open Space
+          </Option>
+          <Option key={10} value={10}>
+            Natural Enclosure
+          </Option>
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateCageDto>((x) => x.description)}
         label="Description"
-        rules={[{ required: false }]}
+        rules={[{ required: true }]}
       >
         <TextArea rows={5} maxLength={500} />
       </Form.Item>

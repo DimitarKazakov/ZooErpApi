@@ -4,7 +4,7 @@ import { ColumnFilterItem } from 'antd/lib/table/interface';
 import React, { useEffect, useState } from 'react';
 import { nameof } from 'ts-simple-nameof';
 import { FoodInfoScreen } from '../../Screens/Info/FoodInfoScreen';
-import { UpdateFoodScreen } from '../../Screens/Update/UpdateVodyStyleScreen';
+import { UpdateFoodScreen } from '../../Screens/Update/UpdateFoodScreen';
 import { FilterDto } from '../../Types/FilterDto';
 import { FoodDto } from '../../Types/Get/FoodDto';
 import { getUserRoles } from '../../Utils/authentication';

@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import { Form, Input, Button, message, Image, DatePicker, Row } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Form, Input, Button, message, Image, Row, InputNumber, Select } from 'antd';
 import { nameof } from 'ts-simple-nameof';
 import TextArea from 'antd/lib/input/TextArea';
-import { CreateCarMakeDto } from '../../../Types/Post/CreateCarMakeDto';
-import { addCarMake } from '../../../Utils/Controllers/CarMakeController';
-import moment from 'moment';
+import { CreateAnimalDto } from '../../../Types/Post/CreateAnimalDto';
+import { addAnimal } from '../../../Utils/Controllers/AnimalController';
+import { CageOptionsDto } from '../../../Types/Get/CageOptionsDto';
+import { getCageOptions } from '../../../Utils/Controllers/CageController';
+import { getFoodOptions } from '../../../Utils/Controllers/FoodController';
+import { FoodOptionsDto } from '../../../Types/Get/FoodOptionsDto';
 
 const layout = {
   labelCol: { span: 8 },
@@ -14,22 +17,30 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-export const CarMakeForm = (props: {
+const { Option } = Select;
+
+export const AnimalForm = (props: {
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [form] = Form.useForm();
   const [imageUrl, setImagUrl] = useState('error');
+  const [cageOptions, setCageOptions] = useState<CageOptionsDto[]>();
+  const [foodOptions, setFoodOptions] = useState<FoodOptionsDto[]>();
+
+  useEffect(() => {
+    getCageOptions().then((data) => setCageOptions(data));
+    getFoodOptions().then((data) => setFoodOptions(data));
+  }, []);
 
   const { setIsModalVisible } = props;
-  const onFinish = async (values: CreateCarMakeDto) => {
-    values.foundedIn = moment(values.foundedIn).format('d/MM/yyyy');
-    const response = await addCarMake(values);
+  const onFinish = async (values: CreateAnimalDto) => {
+    const response = await addAnimal(values);
     if (response) {
-      message.success(`Succesffuly added new car make - ${values.name}`);
+      message.success(`Succesffuly added new animal - ${values.name}`);
       onReset();
       setIsModalVisible(false);
     } else {
-      message.error(`There was an error adding the car make - ${values.name}`);
+      message.error(`There was an error adding the animal - ${values.name}`);
     }
   };
 
@@ -41,31 +52,24 @@ export const CarMakeForm = (props: {
     <Form
       {...layout}
       form={form}
-      name="Car Make Form"
+      name="Animal Form"
       onFinish={async () => onFinish(form.getFieldsValue())}
     >
       <Form.Item
-        name={nameof<CreateCarMakeDto>((x) => x.name)}
+        name={nameof<CreateAnimalDto>((x) => x.name)}
         label="Name"
         rules={[{ required: true }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        name={nameof<CreateCarMakeDto>((x) => x.fullName)}
-        label="Full Name"
-        rules={[{ required: true }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        name={nameof<CreateCarMakeDto>((x) => x.imageUrl)}
+        name={nameof<CreateAnimalDto>((x) => x.imageUrl)}
         label="Image Url"
         rules={[{ required: true }]}
       >
         <Input
           onChange={() =>
-            setImagUrl(form.getFieldValue(nameof<CreateCarMakeDto>((x) => x.imageUrl)))
+            setImagUrl(form.getFieldValue(nameof<CreateAnimalDto>((x) => x.imageUrl)))
           }
         />
       </Form.Item>
@@ -79,30 +83,123 @@ export const CarMakeForm = (props: {
       </Row>
       <br />
       <Form.Item
-        name={nameof<CreateCarMakeDto>((x) => x.headquarters)}
-        label="Headquarters"
+        name={nameof<CreateAnimalDto>((x) => x.age)}
+        label="Age"
         rules={[{ required: true }]}
       >
-        <Input />
+        <InputNumber min={1} max={200} defaultValue={3} />;
       </Form.Item>
       <Form.Item
-        name={nameof<CreateCarMakeDto>((x) => x.foundedBy)}
-        label="Founded By"
+        name={nameof<CreateAnimalDto>((x) => x.price)}
+        label="Price"
         rules={[{ required: true }]}
       >
-        <Input />
+        <InputNumber min={1.5} max={1_000_000} defaultValue={100.5} />;
       </Form.Item>
       <Form.Item
-        name={nameof<CreateCarMakeDto>((x) => x.foundedIn)}
-        label="Founded In"
+        name={nameof<CreateAnimalDto>((x) => x.gender)}
+        label="Gender"
         rules={[{ required: true }]}
       >
-        <DatePicker format={'d/MM/yyyy'} />
+        <Select
+          showSearch
+          style={{ width: 200 }}
+          placeholder="Search to Select"
+          optionFilterProp="children"
+        >
+          <Option key={1} value={1}>
+            Male
+          </Option>
+          <Option key={2} value={2}>
+            Female
+          </Option>
+          <Option key={3} value={3}>
+            Other
+          </Option>
+        </Select>
       </Form.Item>
       <Form.Item
-        name={nameof<CreateCarMakeDto>((x) => x.description)}
+        name={nameof<CreateAnimalDto>((x) => x.kingdomType)}
+        label="Kingdom"
+        rules={[{ required: true }]}
+      >
+        <Select
+          showSearch
+          style={{ width: 200 }}
+          placeholder="Search to Select"
+          optionFilterProp="children"
+        >
+          <Option key={1} value={1}>
+            Mammal
+          </Option>
+          <Option key={2} value={2}>
+            Bird
+          </Option>
+          <Option key={3} value={3}>
+            Reptiles
+          </Option>
+          <Option key={4} value={4}>
+            Amphibian
+          </Option>
+          <Option key={5} value={5}>
+            Insect
+          </Option>
+          <Option key={6} value={6}>
+            Fish
+          </Option>
+          <Option key={7} value={7}>
+            Hybrid
+          </Option>
+          <Option key={8} value={8}>
+            Ivertables
+          </Option>
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateAnimalDto>((x) => x.cageId)}
+        label="Cage"
+        rules={[{ required: true }]}
+      >
+        <Select
+          showSearch
+          style={{ width: 200 }}
+          placeholder="Search to Select"
+          optionFilterProp="children"
+        >
+          {cageOptions?.map((x) => {
+            return (
+              <Option key={x.id} value={x.id}>
+                {x.name}
+              </Option>
+            );
+          })}
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateAnimalDto>((x) => x.foodIds)}
+        label="Food"
+        rules={[{ required: true }]}
+      >
+        <Select
+          showSearch
+          style={{ width: 200 }}
+          placeholder="Search to Select"
+          optionFilterProp="children"
+          mode="multiple"
+        >
+          {foodOptions?.map((x) => {
+            return (
+              <Option key={x.id} value={x.id}>
+                {x.name}
+              </Option>
+            );
+          })}
+        </Select>
+      </Form.Item>
+      <Form.Item
+        name={nameof<CreateAnimalDto>((x) => x.description)}
         label="Description"
-        rules={[{ required: false }]}
+        rules={[{ required: true }]}
       >
         <TextArea rows={5} maxLength={500} />
       </Form.Item>

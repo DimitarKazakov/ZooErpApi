@@ -1,8 +1,8 @@
 import React from 'react';
-import { ExtraForm } from '../../Components/Forms/Create/ExtraForm';
+import { CageForm } from '../../Components/Forms/Create/CageForm';
 import { ModalForm } from '../../Components/ModalForm';
 
-export const CreateExtraScreen = (props: {
+export const CreateCageScreen = (props: {
   visible: boolean;
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
@@ -10,9 +10,9 @@ export const CreateExtraScreen = (props: {
 
   return (
     <ModalForm
-      content={<ExtraForm setIsModalVisible={setIsModalVisible} />}
+      content={<CageForm setIsModalVisible={setIsModalVisible} />}
       visible={visible}
-      name="Create Extra"
+      name="Create Cage"
       setIsModalVisible={setIsModalVisible}
     />
   );

@@ -14,4 +14,6 @@ export type FoodDto = {
   lastModifiedOn: string;
   createdBy: string;
   lastModifiedBy: string;
+  usageTypeId: number;
+  typeId: number;
 };

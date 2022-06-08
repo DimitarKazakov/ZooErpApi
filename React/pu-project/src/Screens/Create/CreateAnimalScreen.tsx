@@ -1,8 +1,8 @@
 import React from 'react';
-import { FuelTypeForm } from '../../Components/Forms/Create/FuelTypeForm';
+import { AnimalForm } from '../../Components/Forms/Create/AnimalForm';
 import { ModalForm } from '../../Components/ModalForm';
 
-export const CreateFuelTypeScreen = (props: {
+export const CreateAnimalScreen = (props: {
   visible: boolean;
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
@@ -10,9 +10,9 @@ export const CreateFuelTypeScreen = (props: {
 
   return (
     <ModalForm
-      content={<FuelTypeForm setIsModalVisible={setIsModalVisible} />}
+      content={<AnimalForm setIsModalVisible={setIsModalVisible} />}
       visible={visible}
-      name="Create Fuel Type"
+      name="Create Animal"
       setIsModalVisible={setIsModalVisible}
     />
   );

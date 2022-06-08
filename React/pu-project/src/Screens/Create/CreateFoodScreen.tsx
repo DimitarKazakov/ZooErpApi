@@ -1,8 +1,8 @@
 import React from 'react';
-import { BodyStyleForm } from '../../Components/Forms/Create/BodyStyleForm';
+import { FoodForm } from '../../Components/Forms/Create/FoodForm';
 import { ModalForm } from '../../Components/ModalForm';
 
-export const CreateBodyStyleScreen = (props: {
+export const CreateFoodScreen = (props: {
   visible: boolean;
   setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
@@ -10,9 +10,9 @@ export const CreateBodyStyleScreen = (props: {
 
   return (
     <ModalForm
-      content={<BodyStyleForm setIsModalVisible={setIsModalVisible} />}
+      content={<FoodForm setIsModalVisible={setIsModalVisible} />}
       visible={visible}
-      name="Create Body Style"
+      name="Create Food"
       setIsModalVisible={setIsModalVisible}
     />
   );

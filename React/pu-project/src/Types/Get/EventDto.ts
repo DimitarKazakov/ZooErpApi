@@ -8,4 +8,5 @@ export type EventDto = {
   cage: string;
   type: string;
   description: string;
+  typeId: number;
 };
