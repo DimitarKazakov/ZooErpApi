@@ -32,12 +32,12 @@ export const CageComponent = () => {
   };
 
   const onChangeCreated = (date: any, dateString: string) => {
-    setFilter(Object.assign(filter, { createdOnDate: moment(dateString).format('d/MM/yyyy') }));
+    setFilter(Object.assign(filter, { createdOnDate: moment(dateString).format('DD/MM/yyyy') }));
   };
 
   const onChangeModified = (date: any, dateString: string) => {
     setFilter(
-      Object.assign(filter, { lastModifiedOnDate: moment(dateString).format('d/MM/yyyy') })
+      Object.assign(filter, { lastModifiedOnDate: moment(dateString).format('DD/MM/yyyy') })
     );
   };
 
@@ -49,14 +49,14 @@ export const CageComponent = () => {
         </Col>
         <Col span={6}>
           <DatePicker
-            format={'d/MM/yyyy'}
+            format="YYYY-MM-DD HH:mm:ss"
             placeholder="created on date"
             onChange={onChangeCreated}
           />
         </Col>
         <Col span={6}>
           <DatePicker
-            format={'d/MM/yyyy'}
+            format="YYYY-MM-DD HH:mm:ss"
             placeholder="last modified on date"
             onChange={onChangeModified}
           />
